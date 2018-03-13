@@ -1,10 +1,11 @@
 package fr.shingshang.game;
 
 import java.io.Serializable;
+import java.util.List;
 
 import fr.shingshang.game.enumeration.PuissancePion;
 
-public class Pion implements Serializable{
+public abstract class Pion implements Serializable{
 	private static final long serialVersionUID = -7632733406514627195L;
 	protected int x;
 	protected int y;
@@ -17,6 +18,8 @@ public class Pion implements Serializable{
 		this.puissance = PuissancePion.AUTRE;
 		this.nom = "Autre";
 	}
+	
+	abstract public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]);
 	
 	public String toString() {
 		return this.nom+"\t["+this.x+":"+this.y+"]";

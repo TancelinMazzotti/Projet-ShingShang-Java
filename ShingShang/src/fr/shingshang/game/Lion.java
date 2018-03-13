@@ -1,5 +1,7 @@
 package fr.shingshang.game;
 
+import java.util.List;
+
 import fr.shingshang.game.enumeration.PuissancePion;
 
 public class Lion extends Pion {
@@ -9,6 +11,12 @@ public class Lion extends Pion {
 		super(x, y);
 		this.puissance = PuissancePion.LION;
 		this.nom = "Lion";
+	}
+
+	@Override
+	public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

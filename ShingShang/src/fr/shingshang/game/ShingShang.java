@@ -32,16 +32,11 @@ public class ShingShang implements Serializable{
 	}
 	
 	public void sauvegarderPartie(String pathFile) throws FileNotFoundException, IOException {
-		GestionSauvegarde saveShingShang = new GestionSauvegarde();
-		saveShingShang.sauvegarder(pathFile, this);
+		GestionSauvegarde.sauvegarder(pathFile, this);
 	}
 	
-	public ShingShang chargerPartie(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
-		GestionSauvegarde loadShingShang = new GestionSauvegarde();
-		ShingShang shingShang = null;
-		shingShang = loadShingShang.charger(pathFile);
-		
-		return shingShang;
+	public static ShingShang chargerPartie(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
+		return GestionSauvegarde.charger(pathFile);
 	}
 
 	public Plateau getPlateau() {

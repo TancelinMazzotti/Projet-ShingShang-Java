@@ -56,7 +56,7 @@ public class MainApp {
 				System.out.print("Nom de la sauvegarde: ");
 				String nomSave = scannerString.nextLine();
 				try {
-					shingShang = shingShang.chargerPartie(nomSave+".save");
+					shingShang = ShingShang.chargerPartie(nomSave+".save");
 					init = true;
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();

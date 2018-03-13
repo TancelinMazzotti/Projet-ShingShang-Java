@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class GestionSauvegarde {
-	public void sauvegarder(String pathFile,ShingShang shingShang) throws FileNotFoundException, IOException {
+	public static void sauvegarder(String pathFile,ShingShang shingShang) throws FileNotFoundException, IOException {
 		File fichierSauvegarde = new File (pathFile);
 
 		ObjectOutputStream writeStream;
@@ -19,7 +19,7 @@ public class GestionSauvegarde {
 		
 	}
 	
-	public ShingShang charger(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
+	public static ShingShang charger(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
 		File fichierCharger = new File (pathFile);
 		ShingShang shingShang = null;
 		
