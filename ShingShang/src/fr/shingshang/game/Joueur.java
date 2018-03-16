@@ -39,15 +39,15 @@ public class Joueur implements Serializable{
 					switch(Integer.parseInt(stringPion[1]))
 					{
 						case 1:
-							Singe singe = new Singe(i,numeroLigne);
+							Singe singe = new Singe(i,numeroLigne,this);
 							this.ajouterPion(singe);
 							break;
 						case 2:
-							Lion lion = new Lion(i,numeroLigne);
+							Lion lion = new Lion(i,numeroLigne,this);
 							this.ajouterPion(lion);
 							break;
 						case 3:
-							Dragon dragon = new Dragon(i,numeroLigne);
+							Dragon dragon = new Dragon(i,numeroLigne,this);
 							this.ajouterPion(dragon);
 							break;
 						default:

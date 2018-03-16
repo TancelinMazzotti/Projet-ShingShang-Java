@@ -9,12 +9,14 @@ public abstract class Pion implements Serializable{
 	private static final long serialVersionUID = -7632733406514627195L;
 	protected int x;
 	protected int y;
+	protected Joueur joueur;
 	protected PuissancePion puissance;
 	protected String nom;
 	
-	public Pion(int x, int y) {
+	public Pion(int x, int y, Joueur joueur) {
 		this.x = x;
 		this.y = y;
+		this.joueur = joueur;
 		this.puissance = PuissancePion.AUTRE;
 		this.nom = "Autre";
 	}
@@ -22,7 +24,7 @@ public abstract class Pion implements Serializable{
 	abstract public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]);
 	
 	public String toString() {
-		return this.nom+"\t["+this.x+":"+this.y+"]";
+		return this.nom+"\t["+this.x+":"+this.y+"]\tJoueur: "+this.joueur.getNumero();
 	}
 	
 	public int getX() {
@@ -37,12 +39,17 @@ public abstract class Pion implements Serializable{
 	public void setY(int y) {
 		this.y = y;
 	}
+	public Joueur getJoueur() {
+		return this.joueur;
+	}
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
+	}
 	public PuissancePion getPuissance() {
 		return puissance;
 	}
 	public void setPuissance(PuissancePion puissance) {
 		this.puissance = puissance;
 	}
-
 		
 }

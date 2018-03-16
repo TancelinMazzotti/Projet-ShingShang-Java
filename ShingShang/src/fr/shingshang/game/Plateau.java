@@ -46,24 +46,17 @@ public class Plateau implements Serializable {
 		
 	}
 	
-	public List<Deplacement> listDeplacementPion(int x, int y){
-		if (this.tabCasePlateau[x][y].getPionCase() != null)
-		{
-			return this.tabCasePlateau[x][y].getPionCase().listDeplacementPossible(tabCasePlateau);
-		}
-		else return null;
-	}
-	
-	
 	public CasePlateau getTabCasePlateauIndex(int x, int y) {
 		if(x < TAILLE_PLATEAU && x >= 0 && y < TAILLE_PLATEAU && y >= 0)
 			return this.tabCasePlateau[x][y];
 		else
 			return null;
 	}
+	
 	public CasePlateau[][] getTabCasePlateau(){
 		return this.tabCasePlateau;
 	}
+	
 	public String toString() {
 		String stringPlateau = new String();
 		

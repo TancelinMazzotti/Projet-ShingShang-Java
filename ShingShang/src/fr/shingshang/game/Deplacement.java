@@ -4,14 +4,14 @@ public class Deplacement {
 	private CasePlateau depart;
 	private CasePlateau destination;
 	private boolean estUnSaut;
-	private Pion pionEliminer;
+	private CasePlateau casePionEliminer;
 	
 	public Deplacement(CasePlateau depart,CasePlateau destination,
-			boolean estUnSaut,Pion pionEliminer) {
+			boolean estUnSaut,CasePlateau casePionEliminer) {
 		this.depart = depart;
 		this.destination = destination;
 		this.estUnSaut = estUnSaut;
-		this.pionEliminer = pionEliminer;
+		this.casePionEliminer = casePionEliminer;
 		
 	}
 	
@@ -33,13 +33,21 @@ public class Deplacement {
 	public void setEstUnSaut(boolean estUnSaut) {
 		this.estUnSaut = estUnSaut;
 	}
-	public Pion getPionEliminer() {
-		return pionEliminer;
+	public CasePlateau getCasePionEliminer() {
+		return casePionEliminer;
 	}
-	public void setPionEliminer(Pion pionEliminer) {
-		this.pionEliminer = pionEliminer;
+	public void setCasePionEliminer(CasePlateau casePionEliminer) {
+		this.casePionEliminer = casePionEliminer;
 	}
 	
+	public String toString(){
+		String message = new String();
+		message += "### DEPLACEMENT ###\n";
+		message += "Deapart: "+depart.toString()+"\n";
+		message += "Destination: "+destination.toString()+"\n";
+		message += "Saut: "+estUnSaut+"\n";
+		return message;
+	}
 	
 
 }

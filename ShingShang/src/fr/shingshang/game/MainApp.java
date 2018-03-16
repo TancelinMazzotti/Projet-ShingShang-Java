@@ -3,6 +3,7 @@ package fr.shingshang.game;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainApp {
@@ -73,6 +74,9 @@ public class MainApp {
 		
 		System.out.println(shingShang.getPlateau());
 		
+		List<Deplacement> maListe = shingShang.getPlateau().getTabCasePlateauIndex(1, 0).getPionCase().listDeplacementPossible(shingShang.getPlateau().getTabCasePlateau());
+		for(int i = 0; i < maListe.size(); i++)
+			System.out.println(maListe.get(i));
 		System.out.println("****** FIN PROGRAMME *****");
 	}
 }

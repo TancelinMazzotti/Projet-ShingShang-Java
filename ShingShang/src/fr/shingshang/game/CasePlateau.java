@@ -38,5 +38,9 @@ public class CasePlateau implements Serializable{
 		this.type = type;
 	}
 
-	
+	public String toString(){
+		String message = new String();
+		message += "Case: ["+x+";"+y+"]";
+		return message;
+	}
 }
