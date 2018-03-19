@@ -74,9 +74,12 @@ public class MainApp {
 		
 		System.out.println(shingShang.getPlateau());
 		
-		List<Deplacement> maListe = shingShang.getPlateau().getTabCasePlateauIndex(1, 0).getPionCase().listDeplacementPossible(shingShang.getPlateau().getTabCasePlateau());
+		List<Deplacement> maListe = shingShang.getPionJoueurActuel(1,0).listDeplacementPossible(shingShang.getPlateau().getTabCasePlateau());
 		for(int i = 0; i < maListe.size(); i++)
 			System.out.println(maListe.get(i));
+		if (maListe.size() == 1)
+			maListe.get(0).deplacerPion();
+		System.out.println(shingShang.getPlateau());
 		System.out.println("****** FIN PROGRAMME *****");
 	}
 }

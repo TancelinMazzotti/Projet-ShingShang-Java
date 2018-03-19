@@ -7,15 +7,13 @@ import fr.shingshang.game.enumeration.PuissancePion;
 
 public abstract class Pion implements Serializable{
 	private static final long serialVersionUID = -7632733406514627195L;
-	protected int x;
-	protected int y;
+	protected CasePlateau casePlateau;
 	protected Joueur joueur;
 	protected PuissancePion puissance;
 	protected String nom;
 	
-	public Pion(int x, int y, Joueur joueur) {
-		this.x = x;
-		this.y = y;
+	public Pion(CasePlateau casePlateau, Joueur joueur) {
+		this.casePlateau = casePlateau;
 		this.joueur = joueur;
 		this.puissance = PuissancePion.AUTRE;
 		this.nom = "Autre";
@@ -24,20 +22,20 @@ public abstract class Pion implements Serializable{
 	abstract public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]);
 	
 	public String toString() {
-		return this.nom+"\t["+this.x+":"+this.y+"]\tJoueur: "+this.joueur.getNumero();
+		return this.nom+"\t["+this.getX()+":"+this.getY()+"]\tJoueur: "+this.joueur.getNumero();
 	}
 	
 	public int getX() {
-		return x;
-	}
-	public void setX(int x) {
-		this.x = x;
+		return casePlateau.getX();
 	}
 	public int getY() {
-		return y;
+		return casePlateau.getY();
 	}
-	public void setY(int y) {
-		this.y = y;
+	public CasePlateau getCasePlateau(){
+		return this.casePlateau;
+	}
+	public void setCasePlateau(CasePlateau casePlateau){
+		this.casePlateau = casePlateau;
 	}
 	public Joueur getJoueur() {
 		return this.joueur;

@@ -9,33 +9,33 @@ import fr.shingshang.game.enumeration.TypeCasePlateau;
 public class Lion extends Pion {
 	private static final long serialVersionUID = 7599412123823107774L;
 
-	public Lion(int x, int y, Joueur joueur) {
-		super(x, y, joueur);
+	public Lion(CasePlateau casePlateau, Joueur joueur) {
+		super(casePlateau, joueur);
 		this.puissance = PuissancePion.LION;
 		this.nom = "Lion";
 	}
 
 	@Override
 	public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]) {
-List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
+		List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 		
-		// Calcul zone du plateau autour du pion 
-		int yMin = this.y - 1;
-		int yMax = this.y + 1;
-		int xMin = this.x - 1;
-		int xMax = this.x + 1;
+		//Calcul zone du plateau autour du pion 
+		int yMin = this.getY() - 1;
+		int yMax = this.getY() + 1;
+		int xMin = this.getX() - 1;
+		int xMax = this.getX() + 1;
 		
 		for(int y = yMin; y <= yMax; y++)
 		{	
 			for(int x = xMin; x <= xMax; x++)
 			{
 				// Calcul coordonne saut
-				int ySaut = this.y;
-				int xSaut = this.x;
-				if(y < this.y) ySaut = y - 1;
-				else if(y > this.y) ySaut = y + 1;
-				if(x < this.x) xSaut = x - 1;
-				else if(x > this.x) xSaut = x + 1;
+				int ySaut = this.getY();
+				int xSaut = this.getX();
+				if(y < this.getY()) ySaut = y - 1;
+				else if(y > this.getY()) ySaut = y + 1;
+				if(x < this.getX()) xSaut = x - 1;
+				else if(x > this.getX()) xSaut = x + 1;
 				
 				// Controle case autour du pion validité
 				if(y > 0 && x > 0
@@ -44,7 +44,7 @@ List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 				{
 					// Si la case de destination est vide
 					if(tabCasePlateau[x][y].getPionCase() == null)
-						listDeplacement.add(new Deplacement(tabCasePlateau[this.x][this.y],tabCasePlateau[x][y],false,null));
+						listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[x][y],false,null));
 					
 					// Si le pion et plus puissant que l'obstacle et la destination de saut ne sort pas du tableau
 					else if(tabCasePlateau[x][y].getPionCase().puissance.value <= this.puissance.value
@@ -55,7 +55,7 @@ List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 						if(tabCasePlateau[xSaut][ySaut].getType() != TypeCasePlateau.BLOQUE 
 								&& tabCasePlateau[xSaut][ySaut].getPionCase() == null)
 						{
-							listDeplacement.add(new Deplacement(tabCasePlateau[this.x][this.y],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
+							listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
 						}
 					}
 				}

@@ -3,16 +3,29 @@ package fr.shingshang.game;
 public class Deplacement {
 	private CasePlateau depart;
 	private CasePlateau destination;
+	private Pion pion;
 	private boolean estUnSaut;
 	private CasePlateau casePionEliminer;
 	
 	public Deplacement(CasePlateau depart,CasePlateau destination,
 			boolean estUnSaut,CasePlateau casePionEliminer) {
+		if(depart == null || destination == null || depart.getPionCase() == null)
+			throw new NullPointerException();
+		
 		this.depart = depart;
 		this.destination = destination;
+		this.pion = depart.getPionCase();
 		this.estUnSaut = estUnSaut;
 		this.casePionEliminer = casePionEliminer;
+	}
+	
+	public void deplacerPion(){
+		if(this.depart == null || this.destination == null || this.pion == null)
+			throw new NullPointerException();
 		
+		this.destination.setPionCase(this.pion);
+		this.pion.setCasePlateau(this.destination);
+		this.depart.setPionCase(null);
 	}
 	
 	public CasePlateau getDepart() {

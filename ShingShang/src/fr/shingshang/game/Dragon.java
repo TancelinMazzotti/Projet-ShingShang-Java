@@ -9,8 +9,8 @@ import fr.shingshang.game.enumeration.TypeCasePlateau;
 public class Dragon extends Pion{
 	private static final long serialVersionUID = -3113333146484676981L;
 
-	public Dragon(int x, int y, Joueur joueur) {
-		super(x, y, joueur);
+	public Dragon(CasePlateau casePlateau, Joueur joueur) {
+		super(casePlateau, joueur);
 		this.puissance = PuissancePion.DRAGON;
 		this.nom = "Dragon";
 	}
@@ -20,22 +20,22 @@ public class Dragon extends Pion{
 		List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 		
 		// Calcul zone du plateau autour du pion 
-		int yMin = this.y - 1;
-		int yMax = this.y + 1;
-		int xMin = this.x - 1;
-		int xMax = this.x + 1;
+		int yMin = this.getY() - 1;
+		int yMax = this.getY() + 1;
+		int xMin = this.getX() - 1;
+		int xMax = this.getX() + 1;
 		
 		for(int y = yMin; y <= yMax; y++)
 		{	
 			for(int x = xMin; x <= xMax; x++)
 			{
 				// Calcul coordonne saut
-				int ySaut = this.y;
-				int xSaut = this.x;
-				if(y < this.y) ySaut = y - 1;
-				else if(y > this.y) ySaut = y + 1;
-				if(x < this.x) xSaut = x - 1;
-				else if(x > this.x) xSaut = x + 1;
+				int ySaut = this.getY();
+				int xSaut = this.getX();
+				if(y < this.getY()) ySaut = y - 1;
+				else if(y > this.getY()) ySaut = y + 1;
+				if(x < this.getX()) xSaut = x - 1;
+				else if(x > this.getX()) xSaut = x + 1;
 				
 				// Controle case autour du pion validité
 				if(y > 0 && x > 0
@@ -51,7 +51,7 @@ public class Dragon extends Pion{
 						if(tabCasePlateau[xSaut][ySaut].getType() != TypeCasePlateau.BLOQUE 
 								&& tabCasePlateau[xSaut][ySaut].getPionCase() == null)
 						{
-							listDeplacement.add(new Deplacement(tabCasePlateau[this.x][this.y],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
+							listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
 						}
 					}
 				}
