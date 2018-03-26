@@ -1,4 +1,4 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.io.Serializable;
 import java.util.ArrayList;

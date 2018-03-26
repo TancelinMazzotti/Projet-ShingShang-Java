@@ -1,4 +1,4 @@
-package fr.shingshang.game.enumeration;
+package fr.shingshang.modele.enumeration;
 
 public enum PuissancePion {
 	DRAGON(3), LION(2), SINGE(1), AUTRE(0);

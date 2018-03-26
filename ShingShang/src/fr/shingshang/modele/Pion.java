@@ -1,9 +1,9 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.io.Serializable;
 import java.util.List;
 
-import fr.shingshang.game.enumeration.PuissancePion;
+import fr.shingshang.modele.enumeration.PuissancePion;
 
 public abstract class Pion implements Serializable{
 	private static final long serialVersionUID = -7632733406514627195L;

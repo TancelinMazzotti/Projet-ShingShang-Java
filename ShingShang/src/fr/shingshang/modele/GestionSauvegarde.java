@@ -1,4 +1,4 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.io.File;
 import java.io.FileInputStream;

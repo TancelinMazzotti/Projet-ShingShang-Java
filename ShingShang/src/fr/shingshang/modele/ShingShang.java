@@ -1,4 +1,4 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 
-import fr.shingshang.game.execption.CaseBloqueException;
-import fr.shingshang.game.execption.HorsPlateauException;
+import fr.shingshang.modele.execption.CaseBloqueException;
+import fr.shingshang.modele.execption.HorsPlateauException;
 
 public class ShingShang implements Serializable{
 	private static final long serialVersionUID = 5545356964013348585L;
@@ -43,7 +43,7 @@ public class ShingShang implements Serializable{
 
 	private void generationPion(Joueur joueur) throws IOException
 	{
-		File fichierCharger = new File("src/fr/shingshang/game/pattern/defaut-placement.pattern");
+		File fichierCharger = new File("src/fr/shingshang/modele/pattern/defaut-placement.pattern");
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichierCharger)));
 		int numeroLigne = 0;

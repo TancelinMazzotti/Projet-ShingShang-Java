@@ -1,9 +1,9 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 
 import java.io.Serializable;
 
-import fr.shingshang.game.enumeration.TypeCasePlateau;
+import fr.shingshang.modele.enumeration.TypeCasePlateau;
 
 public class CasePlateau implements Serializable{
 	private static final long serialVersionUID = 7038042643152918875L;

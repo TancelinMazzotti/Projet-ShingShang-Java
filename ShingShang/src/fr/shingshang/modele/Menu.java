@@ -1,12 +1,12 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import fr.shingshang.game.execption.CaseBloqueException;
-import fr.shingshang.game.execption.HorsPlateauException;
+import fr.shingshang.modele.execption.CaseBloqueException;
+import fr.shingshang.modele.execption.HorsPlateauException;
 
 public class Menu {
 	private static Scanner scannerInt = new Scanner(System.in);

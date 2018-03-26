@@ -1,12 +1,12 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.shingshang.game.enumeration.PuissancePion;
-import fr.shingshang.game.execption.CaseBloqueException;
-import fr.shingshang.game.execption.DeplacementException;
-import fr.shingshang.game.execption.HorsPlateauException;
+import fr.shingshang.modele.enumeration.PuissancePion;
+import fr.shingshang.modele.execption.CaseBloqueException;
+import fr.shingshang.modele.execption.DeplacementException;
+import fr.shingshang.modele.execption.HorsPlateauException;
 
 public class Dragon extends Pion{
 	private static final long serialVersionUID = -3113333146484676981L;

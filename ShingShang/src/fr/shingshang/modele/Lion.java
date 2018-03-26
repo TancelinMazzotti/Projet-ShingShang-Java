@@ -1,20 +1,20 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.shingshang.game.enumeration.PuissancePion;
-import fr.shingshang.game.execption.CaseBloqueException;
-import fr.shingshang.game.execption.DeplacementException;
-import fr.shingshang.game.execption.HorsPlateauException;
+import fr.shingshang.modele.enumeration.PuissancePion;
+import fr.shingshang.modele.execption.CaseBloqueException;
+import fr.shingshang.modele.execption.DeplacementException;
+import fr.shingshang.modele.execption.HorsPlateauException;
 
-public class Singe extends Pion{
-	private static final long serialVersionUID = 8064448209846163754L;
+public class Lion extends Pion {
+	private static final long serialVersionUID = 7599412123823107774L;
 
-	public Singe(CasePlateau casePlateau, Joueur joueur) {
+	public Lion(CasePlateau casePlateau, Joueur joueur) {
 		super(casePlateau, joueur);
-		this.puissance = PuissancePion.SINGE;
-		this.nom = "Singe";
+		this.puissance = PuissancePion.LION;
+		this.nom = "Lion";
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class Singe extends Pion{
 				else if(y > this.getY()) ySaut = y + 1;
 				if(x < this.getX()) xSaut = x - 1;
 				else if(x > this.getX()) xSaut = x + 1;
-				
+
 				try {
 					CasePlateau caseProche = plateau.getTabCasePlateauIndex(x,y);
 					// On essaie de voir si un deplacement simple est possible
@@ -47,22 +47,21 @@ public class Singe extends Pion{
 					
 					try{
 						CasePlateau caseDistant = plateau.getTabCasePlateauIndex(xSaut,ySaut);
-						// On essaie de voir si un deplacement double est possible
-						if(caseProche.getPionCase() == null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
-							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,false,null));
 						// On essaie de voir si un saut est possible
-						else if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
+						if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
 							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
 						}
 					catch (HorsPlateauException | CaseBloqueException | DeplacementException e2) {
 						e2.printStackTrace();
-					}	
+					}
+	
 				}
 				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
 					e.printStackTrace();
-				}
+				} 
 			}
 		}
 		return listDeplacement;
 	}
+
 }

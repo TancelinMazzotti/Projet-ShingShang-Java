@@ -1,6 +1,6 @@
-package fr.shingshang.game;
+package fr.shingshang.modele;
 
-import fr.shingshang.game.execption.DeplacementException;
+import fr.shingshang.modele.execption.DeplacementException;
 
 public class Deplacement {
 	private CasePlateau depart;
