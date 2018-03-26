@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.shingshang.game.enumeration.PuissancePion;
-import fr.shingshang.game.enumeration.TypeCasePlateau;
+import fr.shingshang.game.execption.CaseBloqueException;
+import fr.shingshang.game.execption.DeplacementException;
+import fr.shingshang.game.execption.HorsPlateauException;
 
 public class Dragon extends Pion{
 	private static final long serialVersionUID = -3113333146484676981L;
@@ -16,7 +18,7 @@ public class Dragon extends Pion{
 	}
 
 	@Override
-	public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]) {
+	public List<Deplacement> listDeplacementPossible(Plateau plateau) {
 		List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 		
 		// Calcul zone du plateau autour du pion 
@@ -37,21 +39,15 @@ public class Dragon extends Pion{
 				if(x < this.getX()) xSaut = x - 1;
 				else if(x > this.getX()) xSaut = x + 1;
 				
-				// Controle case autour du pion validité
-				if(Plateau.estSurPlateau(x, y) && tabCasePlateau[x][y].getType() != TypeCasePlateau.BLOQUE)
-				{
-					if(tabCasePlateau[x][y].getPionCase() != null 
-							&& tabCasePlateau[x][y].getPionCase().puissance.value <= this.puissance.value
-							&& xSaut >= 0 && ySaut >= 0
-							&& xSaut < Plateau.TAILLE_PLATEAU && ySaut < Plateau.TAILLE_PLATEAU)
-					{
-						// Si la case destination saut n'est pas bloqué et est vide
-						if(tabCasePlateau[xSaut][ySaut].getType() != TypeCasePlateau.BLOQUE 
-								&& tabCasePlateau[xSaut][ySaut].getPionCase() == null)
-						{
-							listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
-						}
-					}
+				try {
+					CasePlateau caseProche = plateau.getTabCasePlateauIndex(x,y);
+					CasePlateau caseDistant = plateau.getTabCasePlateauIndex(xSaut,ySaut);
+					// On essaie de voir si un saut est possible
+					if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null)
+						listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+				}
+				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
+					e.printStackTrace();
 				}
 			}
 		}

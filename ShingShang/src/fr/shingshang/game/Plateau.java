@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import fr.shingshang.game.enumeration.TypeCasePlateau;
+import fr.shingshang.game.execption.CaseBloqueException;
+import fr.shingshang.game.execption.HorsPlateauException;
 
 public class Plateau implements Serializable {
 	private static final long serialVersionUID = -2056000719242757639L;
@@ -45,18 +47,20 @@ public class Plateau implements Serializable {
 		else return false;
 	}
 	public void ajouterPion(List<Pion> listPion) {
-		for(int i = 0; i< listPion.size(); i++)
+		for(int i = 0; i < listPion.size(); i++)
 		{
 			this.tabCasePlateau[listPion.get(i).getX()][listPion.get(i).getY()].setPionCase(listPion.get(i));
 		}
 		
 	}
 	
-	public CasePlateau getTabCasePlateauIndex(int x, int y) {
-		if(x < TAILLE_PLATEAU && x >= 0 && y < TAILLE_PLATEAU && y >= 0)
-			return this.tabCasePlateau[x][y];
-		else
-			return null;
+	public CasePlateau getTabCasePlateauIndex(int x, int y) throws HorsPlateauException, CaseBloqueException{
+		if(x < 0 || x >= TAILLE_PLATEAU || y < 0 || y >= TAILLE_PLATEAU )
+			throw new HorsPlateauException(x,y);
+		else if(this.tabCasePlateau[x][y].getType() == TypeCasePlateau.BLOQUE)
+			throw new CaseBloqueException(x,y);
+		
+		return this.tabCasePlateau[x][y];
 	}
 	
 	public CasePlateau[][] getTabCasePlateau(){
@@ -72,15 +76,16 @@ public class Plateau implements Serializable {
 			{
 				if(this.tabCasePlateau[x][y].getPionCase() != null)
 					stringPlateau += " "+this.tabCasePlateau[x][y].getPionCase().getPuissance().value; 
-				
+	
 				else if(this.tabCasePlateau[x][y].getType() == TypeCasePlateau.NORMAL)
 					stringPlateau += " 0";
-				
+					
 				else if(this.tabCasePlateau[x][y].getType() == TypeCasePlateau.BLOQUE)
 					stringPlateau += "  ";
 				else if(this.tabCasePlateau[x][y].getType() == TypeCasePlateau.PORTAIL_J1
 						|| this.tabCasePlateau[x][y].getType() == TypeCasePlateau.PORTAIL_J2 )
 					stringPlateau += " P";
+				
 			}
 			
 			stringPlateau += "\n";

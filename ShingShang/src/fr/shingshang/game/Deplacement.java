@@ -1,5 +1,7 @@
 package fr.shingshang.game;
 
+import fr.shingshang.game.execption.DeplacementException;
+
 public class Deplacement {
 	private CasePlateau depart;
 	private CasePlateau destination;
@@ -8,9 +10,13 @@ public class Deplacement {
 	private CasePlateau casePionEliminer;
 	
 	public Deplacement(CasePlateau depart,CasePlateau destination,
-			boolean estUnSaut,CasePlateau casePionEliminer) {
-		if(depart == null || destination == null || depart.getPionCase() == null)
-			throw new NullPointerException();
+			boolean estUnSaut,CasePlateau casePionEliminer) throws DeplacementException{
+		if(depart == null && destination == null)
+			throw new DeplacementException("La case de depart et de destiantion est inconnue");
+		else if(depart == null)
+			throw new DeplacementException("La case de depart est inconnue");
+		else if(destination == null)
+			throw new DeplacementException("La case de destination est inconnue");
 		
 		this.depart = depart;
 		this.destination = destination;
@@ -19,9 +25,16 @@ public class Deplacement {
 		this.casePionEliminer = casePionEliminer;
 	}
 	
-	public void deplacerPion(){
-		if(this.depart == null || this.destination == null || this.pion == null)
-			throw new NullPointerException();
+	public void deplacerPion() throws DeplacementException{
+		if(depart == null && destination == null)
+			throw new DeplacementException("La case de depart et de destiantion est inconnue");
+		else if(depart == null)
+			throw new DeplacementException("La case de depart est inconnue");
+		else if(destination == null)
+			throw new DeplacementException("La case de destination est inconnue");
+		else if(depart.getPionCase() != pion)
+			throw new DeplacementException("Le pion a deplacer n'est pas sur la case de depart");
+		
 		
 		this.destination.setPionCase(this.pion);
 		this.pion.setCasePlateau(this.destination);
@@ -31,26 +44,14 @@ public class Deplacement {
 	public CasePlateau getDepart() {
 		return depart;
 	}
-	public void setDepart(CasePlateau depart) {
-		this.depart = depart;
-	}
 	public CasePlateau getDestination() {
 		return destination;
-	}
-	public void setDestination(CasePlateau destination) {
-		this.destination = destination;
 	}
 	public boolean isEstUnSaut() {
 		return estUnSaut;
 	}
-	public void setEstUnSaut(boolean estUnSaut) {
-		this.estUnSaut = estUnSaut;
-	}
 	public CasePlateau getCasePionEliminer() {
 		return casePionEliminer;
-	}
-	public void setCasePionEliminer(CasePlateau casePionEliminer) {
-		this.casePionEliminer = casePionEliminer;
 	}
 	
 	public String toString(){

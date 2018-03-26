@@ -19,13 +19,18 @@ public class CasePlateau implements Serializable{
 		this.type = TypeCasePlateau.NORMAL;
 	}
 	
+	public boolean estUnPortail(){
+		if (this.type == TypeCasePlateau.PORTAIL_J1 || this.type == TypeCasePlateau.PORTAIL_J2)
+			return true;
+		else return false;
+	}
 	public int getX() {
 		return x;
 	}
 	public int getY() {
 		return y;
 	}
-	public Pion getPionCase() {
+	public Pion getPionCase(){
 		return pionCase;
 	}
 	public void setPionCase(Pion pionCase) {

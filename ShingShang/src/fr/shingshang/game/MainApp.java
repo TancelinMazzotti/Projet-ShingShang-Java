@@ -31,7 +31,7 @@ public class MainApp {
 		Pion pionJoueur = Menu.menuSelectionnerPion(shingShang);
 		
 		// Recuperation list deplacement possible
-		List<Deplacement> maListe = pionJoueur.listDeplacementPossible(shingShang.getPlateau().getTabCasePlateau());
+		List<Deplacement> maListe = pionJoueur.listDeplacementPossible(shingShang.getPlateau());
 		// Afficher deplacement
 		for(int i = 0; i < maListe.size(); i++)
 			System.out.println(maListe.get(i));

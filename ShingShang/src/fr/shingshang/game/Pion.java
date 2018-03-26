@@ -19,7 +19,7 @@ public abstract class Pion implements Serializable{
 		this.nom = "Autre";
 	}
 	
-	abstract public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]);
+	abstract public List<Deplacement> listDeplacementPossible(Plateau plateau);
 	
 	public String toString() {
 		return this.nom+"\t["+this.getX()+":"+this.getY()+"]\tJoueur: "+this.joueur.getNumero();

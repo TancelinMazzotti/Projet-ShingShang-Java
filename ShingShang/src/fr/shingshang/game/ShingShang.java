@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 
+import fr.shingshang.game.execption.CaseBloqueException;
+import fr.shingshang.game.execption.HorsPlateauException;
+
 public class ShingShang implements Serializable{
 	private static final long serialVersionUID = 5545356964013348585L;
 	private Plateau plateau;
@@ -54,23 +57,31 @@ public class ShingShang implements Serializable{
 				String stringPion[] = numeroCase[i].split(":");
 				if(Integer.parseInt(stringPion[0]) == joueur.getNumero())
 				{
-					switch(Integer.parseInt(stringPion[1]))
-					{
-						case 1:
-							Singe singe = new Singe(this.getCasePlateau(i, numeroLigne),joueur);
-							joueur.ajouterPion(singe);
-							break;
-						case 2:
-							Lion lion = new Lion(this.getCasePlateau(i, numeroLigne),joueur);
-							joueur.ajouterPion(lion);
-							break;
-						case 3:
-							Dragon dragon = new Dragon(this.getCasePlateau(i, numeroLigne),joueur);
-							joueur.ajouterPion(dragon);
-							break;
-						default:
-							System.out.println("Erreur fichier");
-							break;
+					try{
+						CasePlateau casePion = this.getCasePlateau(i, numeroLigne);
+						Pion pion = null;
+						switch(Integer.parseInt(stringPion[1]))
+						{
+							case 1:
+								pion = new Singe(casePion,joueur);
+								joueur.ajouterPion(pion);
+								break;
+							case 2:
+								pion= new Lion(casePion,joueur);
+								joueur.ajouterPion(pion);
+								break;
+							case 3:
+								pion = new Dragon(casePion,joueur);
+								joueur.ajouterPion(pion);
+								break;
+							default:
+								System.out.println("Erreur fichier");
+								break;
+						}
+						
+					}
+					catch(HorsPlateauException | CaseBloqueException e){
+						e.printStackTrace();
 					}
 				}
 			}
@@ -79,13 +90,13 @@ public class ShingShang implements Serializable{
 		br.close();
 	}
 	
-	public CasePlateau getCasePlateau(int x, int y){
-		return this.plateau.getTabCasePlateauIndex(x, y);
+	public CasePlateau getCasePlateau(int x, int y) throws HorsPlateauException, CaseBloqueException{
+		return this.plateau.getTabCasePlateauIndex(x,y);
 	}
-	public Pion getPion(int x,int y){
+	public Pion getPion(int x,int y) throws HorsPlateauException, CaseBloqueException{
 		return this.getCasePlateau(x,y).getPionCase();
 	}
-	public Pion getPionJoueurActuel(int x, int y){
+	public Pion getPionJoueurActuel(int x, int y) throws HorsPlateauException, CaseBloqueException{
 		if(this.getPion(x,y) != null && this.getPion(x,y).getJoueur() == this.joueurActuel)
 		{
 			return this.getPion(x,y);
@@ -101,26 +112,13 @@ public class ShingShang implements Serializable{
 	public Plateau getPlateau() {
 		return plateau;
 	}
-	public void setPlateau(Plateau plateau) {
-		this.plateau = plateau;
-	}
 	public Joueur getJoueur1() {
 		return joueur1;
-	}
-	public void setJoueur1(Joueur joueur1) {
-		this.joueur1 = joueur1;
 	}
 	public Joueur getJoueur2() {
 		return joueur2;
 	}
-	public void setJoueur2(Joueur joueur2) {
-		this.joueur2 = joueur2;
-	}
 	public Joueur getJoueurActuel() {
 		return joueurActuel;
 	}
-	public void setJoueurActuel(Joueur joueurActuel) {
-		this.joueurActuel = joueurActuel;
-	}
-
 }

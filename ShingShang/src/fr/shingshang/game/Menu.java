@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import fr.shingshang.game.execption.CaseBloqueException;
+import fr.shingshang.game.execption.HorsPlateauException;
+
 public class Menu {
 	private static Scanner scannerInt = new Scanner(System.in);
 	private static Scanner scannerString = new Scanner(System.in);
@@ -109,13 +112,16 @@ public class Menu {
 				System.out.print("Entrez y : ");
 				y = scannerInt.nextInt();
 				pion =  shingShang.getPionJoueurActuel(x,y);
-				if(pion != null && pion.getJoueur() == shingShang.getJoueurActuel())
-					valide = true;
+				valide = true;
 			}
 			catch(InputMismatchException e) 
 			{
 				System.out.println("Erreur de saisie !");
-				scannerInt.nextLine();
+			}
+			catch (HorsPlateauException e) {
+				e.printStackTrace();
+			} catch (CaseBloqueException e) {
+				e.printStackTrace();
 			}
 		}
 		return pion;

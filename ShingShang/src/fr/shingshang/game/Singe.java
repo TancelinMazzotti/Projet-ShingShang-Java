@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.shingshang.game.enumeration.PuissancePion;
-import fr.shingshang.game.enumeration.TypeCasePlateau;
+import fr.shingshang.game.execption.CaseBloqueException;
+import fr.shingshang.game.execption.DeplacementException;
+import fr.shingshang.game.execption.HorsPlateauException;
 
 public class Singe extends Pion{
 	private static final long serialVersionUID = 8064448209846163754L;
@@ -16,7 +18,7 @@ public class Singe extends Pion{
 	}
 
 	@Override
-	public List<Deplacement> listDeplacementPossible(CasePlateau tabCasePlateau[][]) {
+	public List<Deplacement> listDeplacementPossible(Plateau plateau) {
 		List<Deplacement> listDeplacement = new ArrayList<Deplacement>();
 		
 		//Calcul zone du plateau autour du pion 
@@ -32,36 +34,32 @@ public class Singe extends Pion{
 				// Calcul coordonne saut
 				int ySaut = this.getY();
 				int xSaut = this.getX();
-				
 				if(y < this.getY()) ySaut = y - 1;
 				else if(y > this.getY()) ySaut = y + 1;
-				
 				if(x < this.getX()) xSaut = x - 1;
 				else if(x > this.getX()) xSaut = x + 1;
 				
-				// Controle case autour du pion validité
-				if(Plateau.estSurPlateau(x, y) && tabCasePlateau[x][y].getType() != TypeCasePlateau.BLOQUE)
-				{
-					// Si la case de destination est vide
-					if(tabCasePlateau[x][y].getPionCase() == null)
-					{
-						listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[x][y],false,null));
-						// Test double case
-						if(tabCasePlateau[xSaut][ySaut].getPionCase() == null)
-							listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[xSaut][ySaut],false,null));
-					}
-					// Si le pion et plus puissant que l'obstacle et la destination de saut ne sort pas du tableau
-					else if(tabCasePlateau[x][y].getPionCase().puissance.value <= this.puissance.value
-							&& xSaut >= 0 && ySaut >= 0
-							&& xSaut < Plateau.TAILLE_PLATEAU && ySaut < Plateau.TAILLE_PLATEAU)
-					{
-						// Si la case destination saut n'est pas bloqué et est vide
-						if(tabCasePlateau[xSaut][ySaut].getType() != TypeCasePlateau.BLOQUE 
-								&& tabCasePlateau[xSaut][ySaut].getPionCase() == null)
-						{
-							listDeplacement.add(new Deplacement(tabCasePlateau[this.getX()][this.getY()],tabCasePlateau[xSaut][ySaut],true,tabCasePlateau[x][y]));
+				try {
+					CasePlateau caseProche = plateau.getTabCasePlateauIndex(x,y);
+					// On essaie de voir si un deplacement simple est possible
+					if(caseProche.getPionCase() == null && !caseProche.estUnPortail())
+						listDeplacement.add(new Deplacement(this.casePlateau,caseProche,false,null));
+					
+					try{
+						CasePlateau caseDistant = plateau.getTabCasePlateauIndex(xSaut,ySaut);
+						// On essaie de voir si un deplacement double est possible
+						if(caseProche.getPionCase() == null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
+							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,false,null));
+						// On essaie de voir si un saut est possible
+						else if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
+							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
 						}
-					}
+					catch (HorsPlateauException | CaseBloqueException | DeplacementException e2) {
+						e2.printStackTrace();
+					}	
+				}
+				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
+					e.printStackTrace();
 				}
 			}
 		}
