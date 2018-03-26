@@ -1,9 +1,13 @@
-package fr.shingshang.modele;
+package fr.shingshang.model.pion;
 
 import java.io.Serializable;
 import java.util.List;
 
-import fr.shingshang.modele.enumeration.PuissancePion;
+import fr.shingshang.model.Deplacement;
+import fr.shingshang.model.Joueur;
+import fr.shingshang.model.enumeration.PuissancePion;
+import fr.shingshang.model.plateau.CasePlateau;
+import fr.shingshang.model.plateau.Plateau;
 
 public abstract class Pion implements Serializable{
 	private static final long serialVersionUID = -7632733406514627195L;

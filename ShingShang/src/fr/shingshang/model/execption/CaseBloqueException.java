@@ -1,4 +1,4 @@
-package fr.shingshang.modele.execption;
+package fr.shingshang.model.execption;
 
 public class CaseBloqueException extends Exception{
 

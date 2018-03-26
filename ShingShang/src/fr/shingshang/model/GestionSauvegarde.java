@@ -1,4 +1,4 @@
-package fr.shingshang.modele;
+package fr.shingshang.model;
 
 import java.io.File;
 import java.io.FileInputStream;

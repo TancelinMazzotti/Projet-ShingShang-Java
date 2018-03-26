@@ -1,12 +1,16 @@
-package fr.shingshang.modele;
+package fr.shingshang.model.pion;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.shingshang.modele.enumeration.PuissancePion;
-import fr.shingshang.modele.execption.CaseBloqueException;
-import fr.shingshang.modele.execption.DeplacementException;
-import fr.shingshang.modele.execption.HorsPlateauException;
+import fr.shingshang.model.Deplacement;
+import fr.shingshang.model.Joueur;
+import fr.shingshang.model.enumeration.PuissancePion;
+import fr.shingshang.model.execption.CaseBloqueException;
+import fr.shingshang.model.execption.DeplacementException;
+import fr.shingshang.model.execption.HorsPlateauException;
+import fr.shingshang.model.plateau.CasePlateau;
+import fr.shingshang.model.plateau.Plateau;
 
 public class Lion extends Pion {
 	private static final long serialVersionUID = 7599412123823107774L;

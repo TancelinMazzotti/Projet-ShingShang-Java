@@ -1,8 +1,10 @@
-package fr.shingshang.modele;
+package fr.shingshang.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.shingshang.model.pion.Pion;
 
 public class Joueur implements Serializable{
 	private static final long serialVersionUID = -3098217927160158983L;

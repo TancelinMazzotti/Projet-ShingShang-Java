@@ -1,12 +1,13 @@
-package fr.shingshang.modele;
+package fr.shingshang.model.plateau;
 
 
 import java.io.Serializable;
 import java.util.List;
 
-import fr.shingshang.modele.enumeration.TypeCasePlateau;
-import fr.shingshang.modele.execption.CaseBloqueException;
-import fr.shingshang.modele.execption.HorsPlateauException;
+import fr.shingshang.model.enumeration.TypeCasePlateau;
+import fr.shingshang.model.execption.CaseBloqueException;
+import fr.shingshang.model.execption.HorsPlateauException;
+import fr.shingshang.model.pion.Pion;
 
 public class Plateau implements Serializable {
 	private static final long serialVersionUID = -2056000719242757639L;

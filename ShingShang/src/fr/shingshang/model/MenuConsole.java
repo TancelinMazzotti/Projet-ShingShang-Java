@@ -1,14 +1,15 @@
-package fr.shingshang.modele;
+package fr.shingshang.model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import fr.shingshang.modele.execption.CaseBloqueException;
-import fr.shingshang.modele.execption.HorsPlateauException;
+import fr.shingshang.model.execption.CaseBloqueException;
+import fr.shingshang.model.execption.HorsPlateauException;
+import fr.shingshang.model.pion.Pion;
 
-public class Menu {
+public class MenuConsole {
 	private static Scanner scannerInt = new Scanner(System.in);
 	private static Scanner scannerString = new Scanner(System.in);
 	
@@ -26,7 +27,7 @@ public class Menu {
 		boolean init = false;
 		int choix = 0;
 		
-		Menu.afficherBanniere();
+		MenuConsole.afficherBanniere();
 		
 		while(!init)
 		{

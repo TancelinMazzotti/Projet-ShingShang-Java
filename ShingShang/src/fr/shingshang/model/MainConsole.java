@@ -1,8 +1,10 @@
-package fr.shingshang.modele;
+package fr.shingshang.model;
 
 import java.util.List;
 
-public class MainApp {
+import fr.shingshang.model.pion.Pion;
+
+public class MainConsole {
 
 	private static ShingShang shingShang;
 	
@@ -13,22 +15,22 @@ public class MainApp {
 		
 		while(choix < 1 || choix > 2)
 		{
-			choix = Menu.menuPrincipal();
+			choix = MenuConsole.menuPrincipal();
 		}
 		
 		switch (choix){
 		case 1:
-			shingShang = Menu.menuNouvellePartie();
+			shingShang = MenuConsole.menuNouvellePartie();
 			break;
 		case 2:
-			shingShang = Menu.menuChargerPartie();
+			shingShang = MenuConsole.menuChargerPartie();
 			break;
 		}
 		
 		// Selection d'un pion
 		System.out.println(shingShang.getPlateau());
 		System.out.println(shingShang.getJoueurActuel().getNom()+" à vous de jouer !");
-		Pion pionJoueur = Menu.menuSelectionnerPion(shingShang);
+		Pion pionJoueur = MenuConsole.menuSelectionnerPion(shingShang);
 		
 		// Recuperation list deplacement possible
 		List<Deplacement> maListe = pionJoueur.listDeplacementPossible(shingShang.getPlateau());

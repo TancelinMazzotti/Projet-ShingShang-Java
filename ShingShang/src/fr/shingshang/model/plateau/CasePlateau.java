@@ -1,9 +1,10 @@
-package fr.shingshang.modele;
+package fr.shingshang.model.plateau;
 
 
 import java.io.Serializable;
 
-import fr.shingshang.modele.enumeration.TypeCasePlateau;
+import fr.shingshang.model.enumeration.TypeCasePlateau;
+import fr.shingshang.model.pion.Pion;
 
 public class CasePlateau implements Serializable{
 	private static final long serialVersionUID = 7038042643152918875L;
