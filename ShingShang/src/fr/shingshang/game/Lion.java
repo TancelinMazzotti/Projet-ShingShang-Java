@@ -38,9 +38,7 @@ public class Lion extends Pion {
 				else if(x > this.getX()) xSaut = x + 1;
 				
 				// Controle case autour du pion validité
-				if(y > 0 && x > 0
-					&& y < Plateau.TAILLE_PLATEAU && x < Plateau.TAILLE_PLATEAU
-					&& tabCasePlateau[x][y].getType() != TypeCasePlateau.BLOQUE)
+				if(Plateau.estSurPlateau(x, y) && tabCasePlateau[x][y].getType() != TypeCasePlateau.BLOQUE)
 				{
 					// Si la case de destination est vide
 					if(tabCasePlateau[x][y].getPionCase() == null)

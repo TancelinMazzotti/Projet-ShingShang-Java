@@ -21,10 +21,12 @@ public class ShingShang implements Serializable{
 	
 	public void nouvellePartie(String nomJ1, String nomJ2) throws IOException {
 		this.plateau = new Plateau();
+		
 		this.joueur1 = new Joueur(1,nomJ1);
 		this.generationPion(joueur1);
 		this.joueur2 = new Joueur(2,nomJ2);
 		this.generationPion(joueur2);
+		
 		this.plateau.ajouterPion(this.joueur1.getListPion());
 		this.plateau.ajouterPion(this.joueur2.getListPion());
 		this.joueurActuel = this.joueur1;
@@ -43,6 +45,7 @@ public class ShingShang implements Serializable{
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichierCharger)));
 		int numeroLigne = 0;
 		String ligne;
+		
 		while((ligne=br.readLine())!=null)
 		{
 			String numeroCase[] = ligne.split(" ");

@@ -38,6 +38,12 @@ public class Plateau implements Serializable {
 		this.tabCasePlateau[5][Plateau.TAILLE_PLATEAU-2].setType(TypeCasePlateau.PORTAIL_J2);
 	}
 	
+	public static boolean estSurPlateau(int x, int y){
+		if(y >= 0 && y < Plateau.TAILLE_PLATEAU
+				&& x >= 0 && x < Plateau.TAILLE_PLATEAU)
+			return true;
+		else return false;
+	}
 	public void ajouterPion(List<Pion> listPion) {
 		for(int i = 0; i< listPion.size(); i++)
 		{
