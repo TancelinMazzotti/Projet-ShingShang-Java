@@ -110,8 +110,11 @@ public class ShingShang implements Serializable{
 		else return null;
 	}
 	public Joueur getJoueurSuivant(){
-		if(this.joueurActuel == this.joueur1) this.joueurActuel = this.joueur2;
-		else this.joueurActuel = this.joueur2;
+		if(this.joueurActuel == this.joueur1) return this.joueur2;
+		else return this.joueur1;
+	}
+	public Joueur changerJoueur(){
+		this.joueurActuel = this.getJoueurSuivant();
 		return this.joueurActuel;
 	}
 	

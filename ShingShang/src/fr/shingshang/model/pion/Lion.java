@@ -19,6 +19,7 @@ public class Lion extends Pion {
 		super(casePlateau, joueur);
 		this.puissance = PuissancePion.LION;
 		this.nom = "Lion";
+		this.codeNom = "L";
 	}
 
 	@Override
@@ -56,12 +57,12 @@ public class Lion extends Pion {
 							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
 						}
 					catch (HorsPlateauException | CaseBloqueException | DeplacementException e2) {
-						e2.printStackTrace();
+						System.out.println(e2);
 					}
 	
 				}
 				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
-					e.printStackTrace();
+					System.out.println(e);
 				} 
 			}
 		}

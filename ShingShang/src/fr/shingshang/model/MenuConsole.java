@@ -3,11 +3,15 @@ package fr.shingshang.model;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.shingshang.model.execption.CaseBloqueException;
+import fr.shingshang.model.execption.DeplacementException;
 import fr.shingshang.model.execption.HorsPlateauException;
 import fr.shingshang.model.pion.Pion;
+import fr.shingshang.model.plateau.CasePlateau;
+import fr.shingshang.model.plateau.Plateau;
 
 public class MenuConsole {
 	private static Scanner scannerInt = new Scanner(System.in);
@@ -104,6 +108,7 @@ public class MenuConsole {
 		boolean valide = false;
 		int x, y;
 		Pion pion = null;
+		System.out.println(shingShang.getJoueurActuel().getNom()+" à vous de jouer !");
 		
 		while(!valide)
 		{
@@ -113,19 +118,110 @@ public class MenuConsole {
 				System.out.print("Entrez y : ");
 				y = scannerInt.nextInt();
 				pion =  shingShang.getPionJoueurActuel(x,y);
-				valide = true;
+				if (pion != null)
+					valide = true;
+				else
+					System.out.println("Erreur: Case vide");
 			}
-			catch(InputMismatchException e) 
-			{
+			catch(InputMismatchException e) {
 				System.out.println("Erreur de saisie !");
+				scannerInt.nextLine();
 			}
 			catch (HorsPlateauException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			} catch (CaseBloqueException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 		return pion;
 	}
-
+	public static Deplacement menuSelectionnerDeplacement(List<Deplacement> listeDeplacement){
+		boolean valide = false;
+		int x, y;
+		Deplacement deplacement = null;
+		System.out.println("Choisissez la destination");
+		
+		while(!valide)
+		{
+			
+			try {
+				System.out.print("Entrez x : ");
+				x = scannerInt.nextInt();
+				System.out.print("Entrez y : ");
+				y = scannerInt.nextInt();
+				deplacement = Deplacement.rechercheDestinantionListDeplacement(listeDeplacement, x, y);
+				if(deplacement != null)
+					valide = true;
+			} catch (DeplacementException e) {
+				System.out.println(e);
+			}
+		}
+		return deplacement;
+	}
+	
+	public static void afficherPlateau(Plateau plateau){
+		System.out.println("\n  |0|1|2|3|4|5|6|7|8|9|");
+		System.out.println("-----------------------");
+		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++) 
+		{
+			System.out.print(y+"| ");
+			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++) 
+			{
+				try {
+					CasePlateau caseAfficher = plateau.getTabCasePlateauIndex(x, y);
+					if(caseAfficher.getPionCase() != null)
+						System.out.print(caseAfficher.getPionCase().getCodeNom()+" ");
+					else if(caseAfficher.estUnPortail())
+						System.out.print("P ");
+					else if(caseAfficher.getPionCase() == null)
+						System.out.print("* ");
+				} 
+				catch (HorsPlateauException e) {
+					e.printStackTrace();
+				} 
+				catch (CaseBloqueException e) {
+					System.out.print("  ");
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	public static void afficherPlateau(Plateau plateau, List<Deplacement> listeDeplacement){
+		System.out.println("\n  |0|1|2|3|4|5|6|7|8|9|");
+		System.out.println("-----------------------");
+		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++) 
+		{
+			System.out.print(y+"| ");
+			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++) 
+			{
+				try {
+					CasePlateau caseAfficher = plateau.getTabCasePlateauIndex(x, y);
+					if(caseAfficher.getPionCase() != null)
+						System.out.print(caseAfficher.getPionCase().getCodeNom()+" ");
+					else if(caseAfficher.estUnPortail())
+						System.out.print("P ");
+					else if(caseAfficher.getPionCase() == null)
+					{
+						boolean estDestination = false;
+						for (int i = 0; i < listeDeplacement.size(); i++)
+						{
+							if (caseAfficher == listeDeplacement.get(i).getDestination())
+								estDestination = true;
+						}
+						if (estDestination) System.out.print("X ");
+						else System.out.print("* ");
+					}
+				} 
+				catch (HorsPlateauException e) {
+					e.printStackTrace();
+				} 
+				catch (CaseBloqueException e) {
+					System.out.print("  ");
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 }

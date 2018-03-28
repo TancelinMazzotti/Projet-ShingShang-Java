@@ -2,6 +2,7 @@ package fr.shingshang.model;
 
 import java.util.List;
 
+import fr.shingshang.model.execption.DeplacementException;
 import fr.shingshang.model.pion.Pion;
 
 public class MainConsole {
@@ -27,18 +28,20 @@ public class MainConsole {
 			break;
 		}
 		
-		// Selection d'un pion
-		System.out.println(shingShang.getPlateau());
-		System.out.println(shingShang.getJoueurActuel().getNom()+" à vous de jouer !");
+		MenuConsole.afficherPlateau(shingShang.getPlateau());
 		Pion pionJoueur = MenuConsole.menuSelectionnerPion(shingShang);
+		List<Deplacement> listeDeplacement = pionJoueur.listDeplacementPossible(shingShang.getPlateau());
+		MenuConsole.afficherPlateau(shingShang.getPlateau(), listeDeplacement);
+		Deplacement deplacement = MenuConsole.menuSelectionnerDeplacement(listeDeplacement);
+		try {
+			deplacement.deplacerPion();
+			MenuConsole.afficherPlateau(shingShang.getPlateau());
+		} catch (DeplacementException e) {
+			System.out.println(e);
+		}
 		
-		// Recuperation list deplacement possible
-		List<Deplacement> maListe = pionJoueur.listDeplacementPossible(shingShang.getPlateau());
-		// Afficher deplacement
-		for(int i = 0; i < maListe.size(); i++)
-			System.out.println(maListe.get(i));
 		
-		System.out.println(shingShang.getPlateau());
+		
 		System.out.println("****** FIN PROGRAMME *****");
 	}
 

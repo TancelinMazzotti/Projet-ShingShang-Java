@@ -1,5 +1,7 @@
 package fr.shingshang.model;
 
+import java.util.List;
+
 import fr.shingshang.model.execption.DeplacementException;
 import fr.shingshang.model.pion.Pion;
 import fr.shingshang.model.plateau.CasePlateau;
@@ -27,6 +29,21 @@ public class Deplacement {
 		this.casePionEliminer = casePionEliminer;
 	}
 	
+	public static Deplacement rechercheDestinantionListDeplacement(List<Deplacement> listDeplacement, int x, int y) throws DeplacementException{
+		boolean estDedans = false;
+		Deplacement deplacement = null;
+		for(int i = 0; i < listDeplacement.size(); i++)
+		{
+			if (listDeplacement.get(i).getDestination().getX() == x && listDeplacement.get(i).getDestination().getY() == y)
+			{
+				deplacement = listDeplacement.get(i);
+				estDedans = true;
+			}
+		}
+		if (!estDedans) throw new DeplacementException("Deplacement innexistant");
+		
+		return deplacement;
+	}
 	public void deplacerPion() throws DeplacementException{
 		if(depart == null && destination == null)
 			throw new DeplacementException("La case de depart et de destiantion est inconnue");

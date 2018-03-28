@@ -3,12 +3,17 @@ package fr.shingshang.model.execption;
 public class CaseBloqueException extends Exception{
 
 	private static final long serialVersionUID = 277159463538431455L;
+	private static String message;
 	
 	public CaseBloqueException(){
-		System.out.println("Case bloque");
+		message = "Case bloque";
 	}
 	public CaseBloqueException(int x, int y){
-		System.out.println("Case ["+x+";"+y+"] bloque");
+		message = "Case ["+x+";"+y+"] bloque";
+	}
+	
+	public String toString(){
+		return message;
 	}
 
 }

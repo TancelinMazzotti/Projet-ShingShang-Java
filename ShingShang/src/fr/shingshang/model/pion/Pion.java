@@ -15,12 +15,14 @@ public abstract class Pion implements Serializable{
 	protected Joueur joueur;
 	protected PuissancePion puissance;
 	protected String nom;
+	protected String codeNom;
 	
 	public Pion(CasePlateau casePlateau, Joueur joueur) {
 		this.casePlateau = casePlateau;
 		this.joueur = joueur;
 		this.puissance = PuissancePion.AUTRE;
 		this.nom = "Autre";
+		this.codeNom = "A";
 	}
 	
 	abstract public List<Deplacement> listDeplacementPossible(Plateau plateau);
@@ -50,8 +52,8 @@ public abstract class Pion implements Serializable{
 	public PuissancePion getPuissance() {
 		return puissance;
 	}
-	public void setPuissance(PuissancePion puissance) {
-		this.puissance = puissance;
+	public String getCodeNom() {
+		return this.codeNom;
 	}
 		
 }

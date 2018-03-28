@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.shingshang.controller.MenuPrincipalController">
+   <children>
+      <Label layoutX="202.0" layoutY="30.0" text="Shing - Shang" textAlignment="CENTER" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Button fx:id="chargerPartieButton" layoutX="258.0" layoutY="300.0" mnemonicParsing="false" onAction="#cliqueChargerPartieButton" prefHeight="51.0" prefWidth="284.0" text="Charger partie" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="287.0" layoutY="483.0" text="Dévelloppé par MAZZOTTI Tancelin - 2018" textFill="RED" />
+      <Button fx:id="nouvellePartieButton" layoutX="258.0" layoutY="220.0" mnemonicParsing="false" onAction="#cliqueNouvellePartieButton" prefHeight="51.0" prefWidth="284.0" text="Nouvelle partie" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -19,6 +19,7 @@ public class Dragon extends Pion{
 		super(casePlateau, joueur);
 		this.puissance = PuissancePion.DRAGON;
 		this.nom = "Dragon";
+		this.codeNom = "D";
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class Dragon extends Pion{
 						listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
 				}
 				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
-					e.printStackTrace();
+					System.out.println(e);
 				}
 			}
 		}

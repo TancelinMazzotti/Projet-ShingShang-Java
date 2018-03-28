@@ -3,13 +3,19 @@ package fr.shingshang.model.execption;
 public class HorsPlateauException extends Exception {
 
 	private static final long serialVersionUID = -7045976826400955778L;
+	private static String message;
+	
 	public HorsPlateauException(){
-		System.out.println("Coordonne hors plateau");
+		message = "Coordonnee hors plateau";
 	}
 	public HorsPlateauException(String axe, int valeur){
-		System.out.println("Coordonne hors plateau => "+axe+"="+valeur);
+		message = "Coordonnee hors plateau -> "+axe+"="+valeur;
 	}
 	public HorsPlateauException(int x, int y){
-		System.out.println("Coordonne hors plateau => X="+x+" & Y="+y);
+		message = "Coordonnee hors plateau -> ["+x+";"+y+"]";
+	}
+	
+	public String toString(){
+		return message;
 	}
 }
