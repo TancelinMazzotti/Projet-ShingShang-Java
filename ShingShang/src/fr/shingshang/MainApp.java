@@ -3,6 +3,7 @@ package fr.shingshang;
 import java.io.IOException;
 
 import fr.shingshang.controller.MenuPrincipalController;
+import fr.shingshang.controller.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,6 +30,9 @@ public class MainApp extends Application{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
 			this.rootLayout = (BorderPane) loader.load();
+			RootLayoutController controller = loader.getController();
+			controller.setMainApplication(this);
+			
 			
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
