@@ -1,5 +1,14 @@
 package fr.shingshang.controller;
 
-public class EcranJeuController {
+import fr.shingshang.MainApp;
 
+public class EcranJeuController {
+	private MainApp mainApplication;
+	
+	public MainApp getMainApplication() {
+		return mainApplication;
+	}
+	public void setMainApplication(MainApp mainApplication) {
+		this.mainApplication = mainApplication;
+	}
 }

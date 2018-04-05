@@ -2,7 +2,10 @@ package fr.shingshang;
 
 import java.io.IOException;
 
+import fr.shingshang.controller.ChargerPartieController;
+import fr.shingshang.controller.EcranJeuController;
 import fr.shingshang.controller.MenuPrincipalController;
+import fr.shingshang.controller.NouvellePartieController;
 import fr.shingshang.controller.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -66,8 +69,10 @@ public class MainApp extends Application{
 		{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/NouvellePartie.fxml"));
-			AnchorPane profile = (AnchorPane) loader.load();
-			this.rootLayout.setCenter(profile);
+			AnchorPane nouvellePartie = (AnchorPane) loader.load();
+			this.rootLayout.setCenter(nouvellePartie);
+			NouvellePartieController controller = loader.getController();
+			controller.setMainApplication(this);
 			primaryStage.show();
 		}
 		catch (IOException e)
@@ -81,8 +86,28 @@ public class MainApp extends Application{
 		{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/ChargerPartie.fxml"));
-			AnchorPane profile = (AnchorPane) loader.load();
-			this.rootLayout.setCenter(profile);
+			AnchorPane chargerPartie = (AnchorPane) loader.load();
+			this.rootLayout.setCenter(chargerPartie);
+			ChargerPartieController controller = loader.getController();
+			controller.setMainApplication(this);
+			primaryStage.show();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	public void initEcranJeu()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/EcranJeu.fxml"));
+			AnchorPane ecranJeu = (AnchorPane) loader.load();
+			this.rootLayout.setCenter(ecranJeu);
+			EcranJeuController controller = loader.getController();
+			controller.setMainApplication(this);
 			primaryStage.show();
 		}
 		catch (IOException e)

@@ -11,7 +11,7 @@
    <children>
       <BorderPane layoutX="39.0" layoutY="30.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER">
+            <Label fx:id="titreLabel" styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER">
                <font>
                   <Font size="64.0" />
                </font>
@@ -22,12 +22,12 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Nom Joueur 1: ">
+                        <Label fx:id="joueur1Label" styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Nom Joueur 1: ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
+                        <TextField fx:id="joueur1TextField" styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -39,12 +39,12 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Nom Joueur 2: ">
+                        <Label fx:id="joueur2Label" styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Nom Joueur 2: ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
+                        <TextField fx:id="joueur2TextField" styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -61,12 +61,12 @@
                   </Separator>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Sauvegarde: ">
+                        <Label fx:id="sauvegardeLabel" styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Sauvegarde: ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
+                        <TextField fx:id="sauvegardeTextField" styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -76,7 +76,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Lancez !">
+                  <Button fx:id="lancerButton" alignment="CENTER" mnemonicParsing="false" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Lancez !">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -88,7 +88,7 @@
             </VBox>
          </center>
          <bottom>
-            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
+            <Label fx:id="legendeLabel" styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
