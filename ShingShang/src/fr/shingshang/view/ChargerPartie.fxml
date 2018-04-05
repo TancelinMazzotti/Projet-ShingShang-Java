@@ -11,25 +11,25 @@
    <children>
       <BorderPane layoutX="46.0" layoutY="110.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label text="Shing - Shang" BorderPane.alignment="CENTER">
+            <Label styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER">
                <font>
                   <Font size="64.0" />
                </font>
             </Label>
          </top>
          <bottom>
-            <Label text="Développé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
+            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label text="Nom de la partie: ">
+                        <Label styleClass="labelFormulaire" stylesheets="@css/theme.css" text="Nom de la partie: ">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <TextField>
+                        <TextField styleClass="textFieldFormulaire" stylesheets="@css/theme.css">
                            <font>
                               <Font size="18.0" />
                            </font></TextField>
@@ -41,7 +41,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Charger partie">
+                  <Button mnemonicParsing="false" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Charger partie">
                      <font>
                         <Font size="24.0" />
                      </font>

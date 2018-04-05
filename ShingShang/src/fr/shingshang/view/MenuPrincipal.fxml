@@ -8,23 +8,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.shingshang.controller.MenuPrincipalController">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" stylesheets="@css/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.shingshang.controller.MenuPrincipalController">
    <children>
-      <BorderPane layoutX="27.0" layoutY="162.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="27.0" layoutY="162.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label text="Shing - Shang" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Label styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font size="64.0" />
                </font>
             </Label>
          </top>
          <bottom>
-            <Label text="Dévelloppé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
+            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Dévelloppé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="nouvellePartieButton" mnemonicParsing="false" onAction="#cliqueNouvellePartieButton" prefHeight="51.0" prefWidth="284.0" text="Nouvelle partie" textAlignment="CENTER">
+                  <Button fx:id="nouvellePartieButton" mnemonicParsing="false" onAction="#cliqueNouvellePartieButton" prefHeight="51.0" prefWidth="284.0" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Nouvelle partie" textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -32,7 +32,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="chargerPartieButton" mnemonicParsing="false" onAction="#cliqueChargerPartieButton" prefHeight="51.0" prefWidth="284.0" text="Charger partie" textAlignment="CENTER">
+                  <Button fx:id="chargerPartieButton" mnemonicParsing="false" onAction="#cliqueChargerPartieButton" prefHeight="51.0" prefWidth="284.0" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Charger partie" textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>

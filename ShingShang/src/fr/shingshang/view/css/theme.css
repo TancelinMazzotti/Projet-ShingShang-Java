@@ -1,0 +1,59 @@
+@font-face {
+    src: url("../polices/gang_of_three.ttf");
+}
+
+.backround{
+	-fx-background-image: url("../images/background.jpg");
+	-fx-background-position: center center;
+	-fx-background-size: cover;
+	
+}
+
+.labelTitre{
+	-fx-font-family: "Gang of Three";
+	-fx-font-size: 74;
+	-fx-text-fill: red;
+	-fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
+
+.labelTitre .text {
+    -fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
+
+.labelFormulaire{
+	-fx-font-family: "Gang of Three";
+	-fx-font-size: 25;
+	-fx-text-fill: red;
+}
+
+.labelFormulaire .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+.textFieldFormulaire{
+	-fx-font-family: "Gang of Three";
+	-fx-font-size: 25;
+	-fx-background-color: black;
+	-fx-text-fill: red;
+}
+
+.buttonMenu{
+	-fx-background-color: black;
+	-fx-border-color: white;
+	
+	-fx-font-size: 30;
+	-fx-font-family: "Gang of Three";
+	-fx-text-fill: red;
+	-fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
+
+
+.labelCopyright{
+	-fx-font-size: 15;
+	-fx-text-fill: white;
+	-fx-font-family: "Gang of Three";
+}
