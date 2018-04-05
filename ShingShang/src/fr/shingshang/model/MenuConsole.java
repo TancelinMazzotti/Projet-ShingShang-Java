@@ -128,9 +128,9 @@ public class MenuConsole {
 				scannerInt.nextLine();
 			}
 			catch (HorsPlateauException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			} catch (CaseBloqueException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 		}
 		return pion;
@@ -153,7 +153,7 @@ public class MenuConsole {
 				if(deplacement != null)
 					valide = true;
 			} catch (DeplacementException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 		}
 		return deplacement;
