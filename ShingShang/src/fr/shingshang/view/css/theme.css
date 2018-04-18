@@ -81,6 +81,10 @@
     -fx-stroke-width: 2px;
 }
 
+.buttonMenu:hover{
+	-fx-background-color: darkgray ;
+}
+
 .buttonTerminer{
 	-fx-background-color: black;
 	-fx-border-color: white;
@@ -90,6 +94,10 @@
 	-fx-text-fill: red;
 	-fx-stroke: white;
     -fx-stroke-width: 2px;
+}
+
+.buttonTerminer:hover{
+	-fx-background-color: darkgray ;
 }
 
 .labelCopyright{

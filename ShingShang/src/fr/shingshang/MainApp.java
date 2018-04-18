@@ -28,6 +28,11 @@ public class MainApp extends Application{
 		initMenuPrincipal();
 	}
 	
+	public void refresh()
+	{
+		this.primaryStage.show();
+	}
+	
 	public void initRootLayout()
 	{
 		try

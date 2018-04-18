@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +27,7 @@
             <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développée par MAZZOTTI Tancein - 2018" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <GridPane fx:id="plateauGraphique" alignment="CENTER" maxHeight="500.0" maxWidth="500.0" minHeight="100.0" minWidth="100.0" prefHeight="400.0" prefWidth="400.0" stylesheets="@css/theme.css" BorderPane.alignment="CENTER">
+            <GridPane fx:id="plateauGraphique" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="100.0" prefHeight="400.0" prefWidth="400.0" stylesheets="@css/theme.css" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -155,9 +160,9 @@
             </GridPane>
          </center>
          <left>
-            <VBox alignment="CENTER" prefWidth="150.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="150.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="panneauControl" stylesheets="@css/theme.css">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="panneauControl" stylesheets="@css/theme.css">
                      <children>
                         <Label styleClass="labelJoueur1" stylesheets="@css/theme.css" text="Joueur1:" />
                         <Label styleClass="labelJoueur1" stylesheets="@css/theme.css" text="Joueur1" />
