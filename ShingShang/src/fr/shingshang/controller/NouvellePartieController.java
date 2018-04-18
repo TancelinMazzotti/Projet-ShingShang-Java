@@ -1,6 +1,9 @@
 package fr.shingshang.controller;
 
+import java.io.IOException;
+
 import fr.shingshang.MainApp;
+import fr.shingshang.model.ShingShang;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +30,20 @@ public class NouvellePartieController {
 	private Label legendeLabel;
 	
 	private MainApp mainApplication;
+	
+	public void cliqueLancerButton(){
+		ShingShang shingShang = new ShingShang();
+
+		try {
+			shingShang.nouvellePartie("Tancelin", "Nize");
+			shingShang.setCheminSauvegarde("test");
+			this.mainApplication.initEcranJeu();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	public MainApp getMainApplication() {
 		return mainApplication;

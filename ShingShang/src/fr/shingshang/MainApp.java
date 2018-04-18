@@ -7,6 +7,7 @@ import fr.shingshang.controller.EcranJeuController;
 import fr.shingshang.controller.MenuPrincipalController;
 import fr.shingshang.controller.NouvellePartieController;
 import fr.shingshang.controller.RootLayoutController;
+import fr.shingshang.model.ShingShang;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application{
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private ShingShang shingShang;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -108,6 +110,7 @@ public class MainApp extends Application{
 			this.rootLayout.setCenter(ecranJeu);
 			EcranJeuController controller = loader.getController();
 			controller.setMainApplication(this);
+			controller.initController();
 			primaryStage.show();
 		}
 		catch (IOException e)
@@ -115,6 +118,13 @@ public class MainApp extends Application{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public ShingShang getShingShang(){
+		return this.shingShang;
+	}
+	public void setShingShang(ShingShang shingShang){
+		this.shingShang = shingShang;
 	}
 	public static void main(String[] args) {
 		launch(args);

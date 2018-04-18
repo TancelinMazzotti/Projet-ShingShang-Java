@@ -76,7 +76,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button fx:id="lancerButton" alignment="CENTER" mnemonicParsing="false" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Lancez !">
+                  <Button fx:id="lancerButton" alignment="CENTER" mnemonicParsing="false" onAction="#cliqueLancerButton" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Lancez !">
                      <font>
                         <Font size="24.0" />
                      </font>

@@ -23,6 +23,7 @@ public class ShingShang implements Serializable{
 	private Joueur joueur1;
 	private Joueur joueur2;
 	private Joueur joueurActuel;
+	private String cheminSauvegarde;
 	
 	public ShingShang() {
 		
@@ -40,6 +41,10 @@ public class ShingShang implements Serializable{
 		this.plateau.ajouterPion(this.joueur2.getListPion());
 		this.joueurActuel = this.joueur1;
 	}
+	public void sauvegarderPartie() throws FileNotFoundException, IOException {
+		GestionSauvegarde.sauvegarder(this.cheminSauvegarde, this);
+	}
+	
 	public void sauvegarderPartie(String pathFile) throws FileNotFoundException, IOException {
 		GestionSauvegarde.sauvegarder(pathFile, this);
 	}	
@@ -130,4 +135,13 @@ public class ShingShang implements Serializable{
 	public Joueur getJoueurActuel() {
 		return joueurActuel;
 	}
+
+	public String getCheminSauvegarde() {
+		return cheminSauvegarde;
+	}
+
+	public void setCheminSauvegarde(String cheminSauvegarde) {
+		this.cheminSauvegarde = cheminSauvegarde;
+	}
+
 }

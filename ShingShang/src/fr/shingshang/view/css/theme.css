@@ -9,6 +9,18 @@
 	
 }
 
+.panneauControl{
+	-fx-background-color: black;
+}
+
+.fondCasePlateau{
+	-fx-background-image: url("../images/texture_quartz.jpg");
+	-fx-background-position: center center;
+	-fx-background-size: cover;
+	-fx-border-color: white;
+    -fx-border-width: 1px;
+}
+
 .labelTitre{
 	-fx-font-family: "Gang of Three";
 	-fx-font-size: 74;
@@ -33,6 +45,24 @@
     -fx-stroke-width: 1px;
 }
 
+.labelJoueur1{
+	-fx-font-family: "Gang of Three";
+	-fx-font-size: 18;
+	-fx-text-fill: red;
+}
+
+.labelJoueur2{
+    -fx-font-family: "Gang of Three";
+	-fx-font-size: 18;
+	-fx-text-fill: white;
+}
+
+.labelJoueurActuel{
+    -fx-font-family: "Gang of Three";
+	-fx-font-size: 16;
+	-fx-text-fill: green;
+}
+
 .textFieldFormulaire{
 	-fx-font-family: "Gang of Three";
 	-fx-font-size: 25;
@@ -51,6 +81,16 @@
     -fx-stroke-width: 2px;
 }
 
+.buttonTerminer{
+	-fx-background-color: black;
+	-fx-border-color: white;
+	
+	-fx-font-size: 20;
+	-fx-font-family: "Gang of Three";
+	-fx-text-fill: red;
+	-fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
 
 .labelCopyright{
 	-fx-font-size: 15;
