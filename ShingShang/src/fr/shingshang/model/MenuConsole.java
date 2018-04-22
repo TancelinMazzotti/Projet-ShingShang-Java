@@ -9,6 +9,7 @@ import java.util.Scanner;
 import fr.shingshang.model.execption.CaseBloqueException;
 import fr.shingshang.model.execption.DeplacementException;
 import fr.shingshang.model.execption.HorsPlateauException;
+import fr.shingshang.model.execption.ValeurAttributException;
 import fr.shingshang.model.pion.Pion;
 import fr.shingshang.model.plateau.CasePlateau;
 import fr.shingshang.model.plateau.Plateau;
@@ -77,6 +78,8 @@ public class MenuConsole {
 				System.out.println("Erreur nom de fichier !");
 			} catch (IOException e) {
 				System.out.println("Echec de creation de la partie !");
+			} catch (ValeurAttributException e) {
+				e.printStackTrace();
 			}
 		}
 		return shingShang;

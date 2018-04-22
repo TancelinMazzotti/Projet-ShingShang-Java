@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.shingshang.model.execption.ValeurAttributException;
 import fr.shingshang.model.pion.Pion;
 
 public class Joueur implements Serializable{
@@ -12,7 +13,12 @@ public class Joueur implements Serializable{
 	private String nom;
 	private List<Pion> listPion;
 	
-	public Joueur(int numero, String nom) {
+	public Joueur(int numero, String nom) throws ValeurAttributException {
+		if(numero < 1 || numero > 2)
+			throw new ValeurAttributException();
+		if(nom == "" || nom == null)
+			throw new ValeurAttributException();
+		
 		this.numero = numero;
 		this.nom = nom;
 		this.listPion = new ArrayList<Pion>();
@@ -47,6 +53,4 @@ public class Joueur implements Serializable{
 	public void ajouterPion(Pion pion) {
 		this.listPion.add(pion);
 	}
-	
-	
 }

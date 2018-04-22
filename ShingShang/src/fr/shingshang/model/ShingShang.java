@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 import fr.shingshang.model.execption.CaseBloqueException;
 import fr.shingshang.model.execption.HorsPlateauException;
+import fr.shingshang.model.execption.ValeurAttributException;
 import fr.shingshang.model.pion.Dragon;
 import fr.shingshang.model.pion.Lion;
 import fr.shingshang.model.pion.Pion;
@@ -29,12 +30,12 @@ public class ShingShang implements Serializable{
 		
 	}
 	
-	public void nouvellePartie(String nomJ1, String nomJ2) throws IOException {
+	public void nouvellePartie(String nomJ1, String nomJ2) throws IOException, ValeurAttributException {
 		this.plateau = new Plateau();
 		
 		this.joueur1 = new Joueur(1,nomJ1);
-		this.generationPion(joueur1);
 		this.joueur2 = new Joueur(2,nomJ2);
+		this.generationPion(joueur1);
 		this.generationPion(joueur2);
 		
 		this.plateau.ajouterPion(this.joueur1.getListPion());
