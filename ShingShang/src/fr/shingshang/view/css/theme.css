@@ -14,10 +14,10 @@
 }
 
 .fondCasePlateau{
-	-fx-background-image: url("../images/texture_quartz.jpg");
+	-fx-background-image: url("../images/texture_terre.jpg");
 	-fx-background-position: center center;
 	-fx-background-size: cover;
-	-fx-border-color: white;
+	-fx-border-color: black;
     -fx-border-width: 1px;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .labelCopyright{
-	-fx-font-size: 15;
+	-fx-font-size: 20;
 	-fx-text-fill: white;
 	-fx-font-family: "Gang of Three";
 }

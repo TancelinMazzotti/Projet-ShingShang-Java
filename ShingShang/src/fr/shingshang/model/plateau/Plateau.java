@@ -21,7 +21,11 @@ public class Plateau implements Serializable {
 		{
 			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++)
 			{
-				this.tabCasePlateau[x][y] = new CasePlateau(x,y);
+				try {
+					this.tabCasePlateau[x][y] = new CasePlateau(x,y);
+				} catch (HorsPlateauException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		

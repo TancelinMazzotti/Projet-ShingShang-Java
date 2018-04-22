@@ -10,8 +10,18 @@ import fr.shingshang.model.execption.ValeurAttributException;
 public class TestJoueur {
 	private static Joueur joueur;
 	
+	public void initJoueur(){
+		int numero = 1;
+		String nom = "Joueur 1";
+		try {
+			joueur = new Joueur(numero,nom);
+		} catch (ValeurAttributException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
-	public void test01Constructeur() throws ValeurAttributException{
+	public void test001Constructeur() throws ValeurAttributException{
 		int numero = 1;
 		String nom = "Joueur 1";
 		joueur = new Joueur(numero,nom);
@@ -20,34 +30,33 @@ public class TestJoueur {
 		assertNotEquals(joueur.getListPion(),null);
 	}
 	@Test(expected = ValeurAttributException.class)
-	public void test02Constructeur() throws ValeurAttributException{
+	public void test002Constructeur() throws ValeurAttributException{
 		int numero = 1;
 		String nom = "";
 		joueur = new Joueur(numero,nom);
 	}
 	@Test(expected = ValeurAttributException.class)
-	public void test03Constructeur() throws ValeurAttributException{
+	public void test003Constructeur() throws ValeurAttributException{
 		int numero = 0;
 		String nom = "Joueur 0";
 		joueur = new Joueur(numero,nom);
 	}
 	@Test(expected = ValeurAttributException.class)
-	public void test04Constructeur() throws ValeurAttributException{
+	public void test004Constructeur() throws ValeurAttributException{
 		int numero = 0;
 		String nom = "";
 		joueur = new Joueur(numero,nom);
 	}
 	@Test(expected = ValeurAttributException.class)
-	public void test05Constructeur() throws ValeurAttributException{
+	public void test005Constructeur() throws ValeurAttributException{
 		int numero = 3;
 		String nom = "Joueur 3";
 		joueur = new Joueur(numero,nom);
 	}
-	public void test06Constructeur() throws ValeurAttributException{
+	public void test006Constructeur() throws ValeurAttributException{
 		int numero = 3;
 		String nom = "";
 		joueur = new Joueur(numero,nom);
 	}
 
-	
 }

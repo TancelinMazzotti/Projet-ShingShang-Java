@@ -38,7 +38,7 @@ public class NouvellePartieController {
 		try {
 			shingShang.nouvellePartie("Tancelin", "Nize");
 			shingShang.setCheminSauvegarde("test");
-			this.mainApplication.initEcranJeu();
+			this.mainApplication.initEcranJeu(shingShang);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ValeurAttributException e) {

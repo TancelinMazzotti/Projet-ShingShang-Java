@@ -4,6 +4,7 @@ package fr.shingshang.model.plateau;
 import java.io.Serializable;
 
 import fr.shingshang.model.enumeration.TypeCasePlateau;
+import fr.shingshang.model.execption.HorsPlateauException;
 import fr.shingshang.model.pion.Pion;
 
 public class CasePlateau implements Serializable{
@@ -13,7 +14,10 @@ public class CasePlateau implements Serializable{
 	private Pion pionCase;
 	private TypeCasePlateau type;
 	
-	public CasePlateau(int x, int y) {
+	public CasePlateau(int x, int y) throws HorsPlateauException {
+		if(!Plateau.estSurPlateau(x, y))
+			throw new HorsPlateauException(x,y);
+		
 		this.x = x;
 		this.y = y;
 		this.pionCase = null;

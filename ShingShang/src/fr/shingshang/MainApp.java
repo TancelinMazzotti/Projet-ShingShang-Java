@@ -105,7 +105,7 @@ public class MainApp extends Application{
 		}
 		
 	}
-	public void initEcranJeu()
+	public void initEcranJeu(ShingShang shingShang)
 	{
 		try
 		{
@@ -115,6 +115,7 @@ public class MainApp extends Application{
 			this.rootLayout.setCenter(ecranJeu);
 			EcranJeuController controller = loader.getController();
 			controller.setMainApplication(this);
+			controller.setShingShang(shingShang);
 			controller.initController();
 			primaryStage.show();
 		}
