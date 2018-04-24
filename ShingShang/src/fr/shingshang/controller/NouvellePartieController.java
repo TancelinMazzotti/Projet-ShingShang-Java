@@ -36,8 +36,9 @@ public class NouvellePartieController {
 		ShingShang shingShang = new ShingShang();
 
 		try {
-			shingShang.nouvellePartie("Tancelin", "Nize");
-			shingShang.setCheminSauvegarde("test");
+			shingShang.nouvellePartie(joueur1TextField.getText(), joueur2TextField.getText());
+			shingShang.setCheminSauvegarde(sauvegardeTextField.getText()+".save");
+			shingShang.sauvegarderPartie();
 			this.mainApplication.initEcranJeu(shingShang);
 		} catch (IOException e) {
 			e.printStackTrace();

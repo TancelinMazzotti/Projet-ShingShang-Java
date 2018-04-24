@@ -5,7 +5,7 @@ public class ValeurAttributException extends Exception{
 	private static final long serialVersionUID = 8637836765763515090L;
 	
 	public ValeurAttributException(){
-		super();
+		super("Erreur de valeur");
 	}
 
 }

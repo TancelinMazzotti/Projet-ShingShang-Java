@@ -16,7 +16,9 @@ public class Joueur implements Serializable{
 	public Joueur(int numero, String nom) throws ValeurAttributException {
 		if(numero < 1 || numero > 2)
 			throw new ValeurAttributException();
-		if(nom == "" || nom == null)
+		if(nom == null)
+			throw new ValeurAttributException();
+		if(nom == "" || nom.length() == 0)
 			throw new ValeurAttributException();
 		
 		this.numero = numero;

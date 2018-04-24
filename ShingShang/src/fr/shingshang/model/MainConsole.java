@@ -1,5 +1,7 @@
 package fr.shingshang.model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import fr.shingshang.model.execption.DeplacementException;
@@ -36,8 +38,13 @@ public class MainConsole {
 		try {
 			deplacement.deplacerPion();
 			MenuConsole.afficherPlateau(shingShang.getPlateau());
+			shingShang.sauvegarderPartie();
 		} catch (DeplacementException e) {
 			System.out.println(e);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 		

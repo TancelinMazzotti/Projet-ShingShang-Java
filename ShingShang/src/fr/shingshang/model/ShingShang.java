@@ -136,12 +136,20 @@ public class ShingShang implements Serializable{
 	public Joueur getJoueurActuel() {
 		return joueurActuel;
 	}
+	public void setJoueurActuel(Joueur joueurActuel) {
+		this.joueurActuel = joueurActuel;
+	}
 
 	public String getCheminSauvegarde() {
 		return cheminSauvegarde;
 	}
 
-	public void setCheminSauvegarde(String cheminSauvegarde) {
+	public void setCheminSauvegarde(String cheminSauvegarde) throws ValeurAttributException {
+		if(cheminSauvegarde == null)
+			throw new ValeurAttributException();
+		if(cheminSauvegarde == "" || cheminSauvegarde.length() == 0)
+			throw new ValeurAttributException();
+		
 		this.cheminSauvegarde = cheminSauvegarde;
 	}
 

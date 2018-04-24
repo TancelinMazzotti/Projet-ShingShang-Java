@@ -41,7 +41,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button fx:id="lancerButton" mnemonicParsing="false" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Charger partie">
+                  <Button fx:id="lancerButton" mnemonicParsing="false" onAction="#cliqueLancerButton" styleClass="buttonMenu" stylesheets="@css/theme.css" text="Charger partie">
                      <font>
                         <Font size="24.0" />
                      </font>

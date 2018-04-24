@@ -73,6 +73,7 @@ public class MenuConsole {
 			try {
 				shingShang.nouvellePartie(nomJ1, nomJ2);
 				shingShang.sauvegarderPartie(nomSave+".save");
+				shingShang.setCheminSauvegarde(nomSave+".save");
 				init = true;
 			} catch (FileNotFoundException e) {
 				System.out.println("Erreur nom de fichier !");
@@ -95,12 +96,15 @@ public class MenuConsole {
 			String nomSave = scannerString.nextLine();
 			try {
 				shingShang = ShingShang.chargerPartie(nomSave+".save");
+				shingShang.setCheminSauvegarde(nomSave+".save");
 				init = true;
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
 				System.out.println("Fichier introuvable");
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ValeurAttributException e) {
 				e.printStackTrace();
 			}
 		}
