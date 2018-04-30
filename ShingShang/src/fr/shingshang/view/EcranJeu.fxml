@@ -477,7 +477,7 @@
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="buttonTerminer" stylesheets="@css/theme.css" text="Terminer">
+                  <Button fx:id="terminerButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cliqueTerminerButton" styleClass="buttonTerminer" stylesheets="@css/theme.css" text="Terminer">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></Button>

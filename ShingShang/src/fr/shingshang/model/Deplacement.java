@@ -30,17 +30,13 @@ public class Deplacement {
 	}
 	
 	public static Deplacement rechercheDestinantionListDeplacement(List<Deplacement> listDeplacement, int x, int y) throws DeplacementException{
-		boolean estDedans = false;
 		Deplacement deplacement = null;
 		for(int i = 0; i < listDeplacement.size(); i++)
 		{
 			if (listDeplacement.get(i).getDestination().getX() == x && listDeplacement.get(i).getDestination().getY() == y)
-			{
 				deplacement = listDeplacement.get(i);
-				estDedans = true;
-			}
 		}
-		if (!estDedans) throw new DeplacementException("Deplacement innexistant");
+		if (deplacement == null) throw new DeplacementException("Deplacement innexistant");
 		
 		return deplacement;
 	}

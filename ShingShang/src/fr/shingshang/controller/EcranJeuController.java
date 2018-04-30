@@ -1,14 +1,21 @@
 package fr.shingshang.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
 import fr.shingshang.MainApp;
+import fr.shingshang.model.Deplacement;
 import fr.shingshang.model.ShingShang;
 import fr.shingshang.model.enumeration.PuissancePion;
 import fr.shingshang.model.execption.CaseBloqueException;
+import fr.shingshang.model.execption.DeplacementException;
 import fr.shingshang.model.execption.HorsPlateauException;
 import fr.shingshang.model.pion.Pion;
 import fr.shingshang.model.plateau.CasePlateau;
 import fr.shingshang.model.plateau.Plateau;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
@@ -31,9 +38,13 @@ public class EcranJeuController {
 	@FXML
 	private GridPane plateauGraphique;
 	@FXML
+	private Button terminerButton;
+	@FXML
 	private Label legendeLabel;
 	
 	private ImageView imagesCasePlateau[][];
+	private Pion pionSelectionner;
+	List<Deplacement> listDeplacement;
 	private ShingShang shingShang;
 	
 	private final Image IMAGE_SINGE_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/singe.png");
@@ -44,18 +55,19 @@ public class EcranJeuController {
 	private final Image IMAGE_DRAGON_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/dragon2.png");
 	private final Image IMAGE_BLOQUE = new Image("file:src/fr/shingshang/view/images/bloque.png");
 	private final Image IMAGE_PORTE = new Image("file:src/fr/shingshang/view/images/porte.png");
-	//private final Image IMAGE_DESTIANTION = new Image("file:src/fr/shingshang/view/images/destination.png");
-	
+		
 	private MainApp mainApplication;
 	
 	public EcranJeuController(){
 		this.imagesCasePlateau = new ImageView[Plateau.TAILLE_PLATEAU][Plateau.TAILLE_PLATEAU];
+		this.pionSelectionner = null;
 	}
 	
 	public void initController(){
 		nomJoueur1Label.setText(shingShang.getJoueur1().getNom());
 		nomJoueur2Label.setText(shingShang.getJoueur2().getNom());
 		nomJoueurActuelLabel.setText(shingShang.getJoueurActuel().getNom());
+		
 		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++)
 		{
 			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++)
@@ -108,16 +120,45 @@ public class EcranJeuController {
 	}
 	
 	private void cliquerSurCase(ImageView imageView){
-		System.out.println("clique");
 		int coordonneImage[];
+		
+		Shadow shadow = new Shadow(0.0, Color.ORANGE);
+		int x, y;
 		try {
 			coordonneImage = getCoordImageToken(imageView);
-			System.out.println("X: "+coordonneImage[0]+" - Y: "+coordonneImage[1]);
-			shingShang.setJoueurActuel(shingShang.getJoueurSuivant());
-			imageView.setEffect(null);
+			x = coordonneImage[0];
+			y = coordonneImage[1];
+			Pion pionClique = shingShang.getPionJoueurActuel(x, y);
+			
+			if(pionClique != null){
+				this.pionSelectionner = pionClique;
+				listDeplacement = pionSelectionner.listDeplacementPossible(shingShang.getPlateau());
+				resetEffect();
+				for(int i = 0; i < listDeplacement.size(); i++)
+				{
+					Deplacement deplacement = listDeplacement.get(i);
+					int xDestination = deplacement.getDestination().getX();
+					int yDestination = deplacement.getDestination().getY();
+					this.imagesCasePlateau[xDestination][yDestination].getParent().setEffect(shadow);
+				}
+			}
+			
+			else if(this.pionSelectionner != null){
+				Deplacement deplacement = Deplacement.rechercheDestinantionListDeplacement(this.listDeplacement, x, y);
+				deplacement.deplacerPion();
+				this.pionSelectionner = null;
+				resetEffect();
+				actualiserAffichage();
+			}
+
 		} catch (HorsPlateauException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch (DeplacementException e) {
+			System.out.println(e.getMessage());
+		} catch (CaseBloqueException e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
 	private void entrerSurCase(ImageView imageView){
 		int coordonneImage[];
@@ -137,9 +178,32 @@ public class EcranJeuController {
 	private void sortirDeCase(ImageView imageView){
 		imageView.setEffect(null);
 	}
+	public void cliqueTerminerButton(){
+		this.pionSelectionner =null;
+		resetEffect();
+		actualiserAffichage();
+		shingShang.changerJoueur();
+		nomJoueurActuelLabel.setText(shingShang.getJoueurActuel().getNom());
+		try {
+			shingShang.sauvegarderPartie();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	private void resetEffect(){
+		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++){
+			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++){
+				this.imagesCasePlateau[x][y].setEffect(null);
+				this.imagesCasePlateau[x][y].getParent().setEffect(null);
+			}
+		}
+	}
 	public void actualiserAffichage(){
 		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++){
 			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++){
+				imagesCasePlateau[x][y].setImage(null);
 				try {
 					CasePlateau casePlateau = this.shingShang.getCasePlateau(x, y);
 					if(casePlateau.estUnPortail())
