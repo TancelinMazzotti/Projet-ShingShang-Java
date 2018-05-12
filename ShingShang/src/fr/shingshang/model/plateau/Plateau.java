@@ -13,6 +13,10 @@ public class Plateau implements Serializable {
 	private static final long serialVersionUID = -2056000719242757639L;
 	public static final int TAILLE_PLATEAU = 10;
 	private CasePlateau tabCasePlateau[][];
+	private CasePlateau portail1J1;
+	private CasePlateau portail2J1;
+	private CasePlateau portail1J2;
+	private CasePlateau portail2J2;
 	
 	public Plateau() {
 		// Creation et initialisation de tabCasePlateau
@@ -40,9 +44,13 @@ public class Plateau implements Serializable {
 
 		// Transformation des cases en porte
 		this.tabCasePlateau[4][1].setType(TypeCasePlateau.PORTAIL_J1);
+		this.setPortail1J1(this.tabCasePlateau[4][1]);
 		this.tabCasePlateau[5][1].setType(TypeCasePlateau.PORTAIL_J1);
+		this.setPortail2J1(this.tabCasePlateau[5][1]);
 		this.tabCasePlateau[4][Plateau.TAILLE_PLATEAU-2].setType(TypeCasePlateau.PORTAIL_J2);
+		this.setPortail1J2(this.tabCasePlateau[4][Plateau.TAILLE_PLATEAU-2]);
 		this.tabCasePlateau[5][Plateau.TAILLE_PLATEAU-2].setType(TypeCasePlateau.PORTAIL_J2);
+		this.setPortail2J2(this.tabCasePlateau[5][Plateau.TAILLE_PLATEAU-2]);
 	}
 	
 	public static boolean estSurPlateau(int x, int y){
@@ -97,6 +105,38 @@ public class Plateau implements Serializable {
 		}
 		
 		return stringPlateau;
+	}
+
+	public CasePlateau getPortail1J1() {
+		return portail1J1;
+	}
+
+	public void setPortail1J1(CasePlateau portail1j1) {
+		portail1J1 = portail1j1;
+	}
+
+	public CasePlateau getPortail2J1() {
+		return portail2J1;
+	}
+
+	public void setPortail2J1(CasePlateau portail2j1) {
+		portail2J1 = portail2j1;
+	}
+
+	public CasePlateau getPortail1J2() {
+		return portail1J2;
+	}
+
+	public void setPortail1J2(CasePlateau portail1j2) {
+		portail1J2 = portail1j2;
+	}
+
+	public CasePlateau getPortail2J2() {
+		return portail2J2;
+	}
+
+	public void setPortail2J2(CasePlateau portail2j2) {
+		portail2J2 = portail2j2;
 	}
 
 }

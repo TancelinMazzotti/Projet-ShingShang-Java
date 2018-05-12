@@ -41,35 +41,33 @@ public class EcranJeuController {
 	private Button terminerButton;
 	@FXML
 	private Label legendeLabel;
-	
+
 	private ImageView imagesCasePlateau[][];
 	private Pion pionSelectionner;
-	private Pion pionSaut;
 	List<Deplacement> listDeplacement;
 	private ShingShang shingShang;
-	
-	private final Image IMAGE_SINGE_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/singe.png");
-	private final Image IMAGE_LION_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/lion.png");
-	private final Image IMAGE_DRAGON_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/dragon.png");
-	private final Image IMAGE_SINGE_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/singe2.png");
-	private final Image IMAGE_LION_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/lion2.png");
-	private final Image IMAGE_DRAGON_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/dragon2.png");
-	private final Image IMAGE_BLOQUE = new Image("file:src/fr/shingshang/view/images/bloque.png");
-	private final Image IMAGE_PORTE = new Image("file:src/fr/shingshang/view/images/porte.png");
-		
+
+	private static final Image IMAGE_SINGE_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/singe.png");
+	private static final Image IMAGE_LION_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/lion.png");
+	private static final Image IMAGE_DRAGON_JOUEUR1 = new Image("file:src/fr/shingshang/view/images/dragon.png");
+	private static final Image IMAGE_SINGE_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/singe2.png");
+	private static final Image IMAGE_LION_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/lion2.png");
+	private static final Image IMAGE_DRAGON_JOUEUR2 = new Image("file:src/fr/shingshang/view/images/dragon2.png");
+	private static final Image IMAGE_BLOQUE = new Image("file:src/fr/shingshang/view/images/bloque.png");
+	private static final Image IMAGE_PORTE = new Image("file:src/fr/shingshang/view/images/porte.png");
+
 	private MainApp mainApplication;
-	
+
 	public EcranJeuController(){
 		this.imagesCasePlateau = new ImageView[Plateau.TAILLE_PLATEAU][Plateau.TAILLE_PLATEAU];
 		this.pionSelectionner = null;
-		this.pionSaut = null;
 	}
-	
+
 	public void initController(){
 		nomJoueur1Label.setText(shingShang.getJoueur1().getNom());
 		nomJoueur2Label.setText(shingShang.getJoueur2().getNom());
 		nomJoueurActuelLabel.setText(shingShang.getJoueurActuel().getNom());
-		
+
 		for(int y = 0; y < Plateau.TAILLE_PLATEAU; y++)
 		{
 			for(int x = 0; x < Plateau.TAILLE_PLATEAU; x++)
@@ -81,7 +79,7 @@ public class EcranJeuController {
 					imageView.fitHeightProperty().bind(pane.heightProperty());
 					imageView.fitWidthProperty().bind(pane.widthProperty());
 					this.imagesCasePlateau[x][y] = imageView;
-					
+
 					imageView.setOnMouseClicked((MouseEvent evt) -> {
 						cliquerSurCase(imageView);
 					});
@@ -91,7 +89,7 @@ public class EcranJeuController {
 					imageView.setOnMouseExited((MouseEvent evt) -> {
 						sortirDeCase(imageView);
 					});
-					
+
 				} catch (HorsPlateauException e) {
 					e.printStackTrace();
 				}
@@ -120,10 +118,10 @@ public class EcranJeuController {
 		}
 		return coordonne;
 	}
-	
+
 	private void cliquerSurCase(ImageView imageView){
 		int coordonneImage[];
-		
+
 		Shadow shadow = new Shadow(0.0, Color.ORANGE);
 		int x, y;
 		try {
@@ -131,7 +129,7 @@ public class EcranJeuController {
 			x = coordonneImage[0];
 			y = coordonneImage[1];
 			Pion pionClique = shingShang.getPionJoueurActuel(x, y);
-			
+
 			if(pionClique != null){
 				this.pionSelectionner = pionClique;
 				listDeplacement = pionSelectionner.listDeplacementPossible(shingShang.getPlateau());
@@ -144,7 +142,7 @@ public class EcranJeuController {
 					this.imagesCasePlateau[xDestination][yDestination].getParent().setEffect(shadow);
 				}
 			}
-			
+
 			else if(this.pionSelectionner != null){
 				Deplacement deplacement = Deplacement.rechercheDestinantionListDeplacement(this.listDeplacement, x, y);
 				deplacement.deplacerPion();
@@ -152,9 +150,15 @@ public class EcranJeuController {
 				{
 					deplacement.supprimerPion();
 				}
+
 				this.pionSelectionner = null;
 				resetEffect();
 				actualiserAffichage();
+				if(shingShang.testVictoireJoueurActuel()){
+					plateauGraphique.setDisable(true);
+					terminerButton.setDisable(true);
+					titreLabel.setText("Victoire");
+				}
 			}
 
 		} catch (HorsPlateauException e) {
@@ -214,7 +218,7 @@ public class EcranJeuController {
 					CasePlateau casePlateau = this.shingShang.getCasePlateau(x, y);
 					if(casePlateau.estUnPortail())
 						imagesCasePlateau[x][y].setImage(IMAGE_PORTE);
-					
+
 					if(casePlateau.getPionCase() != null){
 						if(casePlateau.getPionCase().getPuissance() == PuissancePion.SINGE)
 						{
@@ -243,7 +247,7 @@ public class EcranJeuController {
 			}
 		}
 	}
-	
+
 	public MainApp getMainApplication() {
 		return mainApplication;
 	}

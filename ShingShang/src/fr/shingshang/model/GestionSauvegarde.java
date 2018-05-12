@@ -11,14 +11,14 @@ import java.io.ObjectOutputStream;
 public class GestionSauvegarde {
 	public static void sauvegarder(String pathFile,ShingShang shingShang) throws FileNotFoundException, IOException {
 		File fichierSauvegarde = new File (pathFile);
-		ObjectOutputStream writeStream = new ObjectOutputStream (new FileOutputStream (fichierSauvegarde));
+		ObjectOutputStream writeStream = new ObjectOutputStream (new FileOutputStream ("../"+fichierSauvegarde));
 		writeStream.writeObject(shingShang);
 		writeStream.close();
 	}
 	
 	public static ShingShang charger(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
 		File fichierCharger = new File (pathFile);
-		ObjectInputStream readStream = new ObjectInputStream(new FileInputStream (fichierCharger));
+		ObjectInputStream readStream = new ObjectInputStream(new FileInputStream ("../"+fichierCharger));
 		ShingShang shingShang = (ShingShang)readStream.readObject();
 		readStream.close();
 		

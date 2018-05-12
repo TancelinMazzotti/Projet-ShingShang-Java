@@ -21,7 +21,7 @@
    <children>
       <BorderPane layoutX="196.0" layoutY="107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER" />
+            <Label fx:id="titreLabel" styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER" />
          </top>
          <bottom>
             <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développée par MAZZOTTI Tancein - 2018" BorderPane.alignment="CENTER" />

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 
+import fr.shingshang.model.enumeration.PuissancePion;
 import fr.shingshang.model.execption.CaseBloqueException;
 import fr.shingshang.model.execption.HorsPlateauException;
 import fr.shingshang.model.execption.ValeurAttributException;
@@ -55,7 +56,7 @@ public class ShingShang implements Serializable{
 
 	private void generationPion(Joueur joueur) throws IOException
 	{
-		File fichierCharger = new File("src/fr/shingshang/model/pattern/defaut-placement.pattern");
+		File fichierCharger = new File("res/defaut-placement.pattern");
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichierCharger)));
 		int numeroLigne = 0;
@@ -124,6 +125,35 @@ public class ShingShang implements Serializable{
 		return this.joueurActuel;
 	}
 	
+	public boolean testVictoireJoueurActuel(){
+		boolean victoire = false;
+
+		if (joueurActuel.getNumero() == 2)
+		{
+			if(plateau.getPortail1J1().getPionCase() != null){
+				if(plateau.getPortail1J1().getPionCase().getJoueur() == joueur2 && plateau.getPortail1J1().getPionCase().getPuissance() == PuissancePion.DRAGON)
+					victoire = true;
+			}
+			if(plateau.getPortail2J1().getPionCase() != null){
+				if(plateau.getPortail2J1().getPionCase().getJoueur() == joueur2 && plateau.getPortail2J1().getPionCase().getPuissance() == PuissancePion.DRAGON)
+					victoire = true;
+			}
+		}
+		else if (joueurActuel.getNumero() == 1)
+		{
+			if(plateau.getPortail1J2().getPionCase() != null){
+				if(plateau.getPortail1J2().getPionCase().getJoueur() == joueur1 && plateau.getPortail1J2().getPionCase().getPuissance() == PuissancePion.DRAGON)
+					victoire = true;
+			}
+
+			if(plateau.getPortail2J2().getPionCase() != null){
+				if(plateau.getPortail2J2().getPionCase().getJoueur() == joueur1 && plateau.getPortail2J2().getPionCase().getPuissance() == PuissancePion.DRAGON)
+					victoire = true;
+			}
+		}
+		return victoire;
+	}
+
 	public Plateau getPlateau() {
 		return plateau;
 	}

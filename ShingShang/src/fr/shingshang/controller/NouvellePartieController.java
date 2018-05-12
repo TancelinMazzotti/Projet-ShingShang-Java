@@ -22,6 +22,8 @@ public class NouvellePartieController {
 	@FXML
 	private Label joueur2Label;
 	@FXML
+	private Label etatLabel;
+	@FXML
 	private Label sauvegardeLabel;
 	@FXML
 	private TextField sauvegardeTextField;
@@ -42,8 +44,10 @@ public class NouvellePartieController {
 			this.mainApplication.initEcranJeu(shingShang);
 		} catch (IOException e) {
 			e.printStackTrace();
+			etatLabel.setText(e.getMessage());
 		} catch (ValeurAttributException e) {
 			e.printStackTrace();
+			etatLabel.setText(e.getMessage());
 		}
 		
 		
