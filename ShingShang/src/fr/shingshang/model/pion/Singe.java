@@ -56,8 +56,12 @@ public class Singe extends Pion{
 						if(caseProche.getPionCase() == null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
 							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,false,null));
 						// On essaie de voir si un saut est possible
-						else if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
-							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+						else if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail()){
+							if(caseProche.getPionCase().getJoueur() == this.joueur && caseProche.getPionCase().getPuissance().value <= this.puissance.value )
+								listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,null));
+							else if(caseProche.getPionCase().getPuissance().value <= this.puissance.value)
+								listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+						}
 						}
 					catch (HorsPlateauException | CaseBloqueException | DeplacementException e2) {
 						System.out.println(e2);

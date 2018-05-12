@@ -44,6 +44,7 @@ public class EcranJeuController {
 	
 	private ImageView imagesCasePlateau[][];
 	private Pion pionSelectionner;
+	private Pion pionSaut;
 	List<Deplacement> listDeplacement;
 	private ShingShang shingShang;
 	
@@ -61,6 +62,7 @@ public class EcranJeuController {
 	public EcranJeuController(){
 		this.imagesCasePlateau = new ImageView[Plateau.TAILLE_PLATEAU][Plateau.TAILLE_PLATEAU];
 		this.pionSelectionner = null;
+		this.pionSaut = null;
 	}
 	
 	public void initController(){
@@ -146,6 +148,10 @@ public class EcranJeuController {
 			else if(this.pionSelectionner != null){
 				Deplacement deplacement = Deplacement.rechercheDestinantionListDeplacement(this.listDeplacement, x, y);
 				deplacement.deplacerPion();
+				if(deplacement.isEstUnSaut())
+				{
+					deplacement.supprimerPion();
+				}
 				this.pionSelectionner = null;
 				resetEffect();
 				actualiserAffichage();

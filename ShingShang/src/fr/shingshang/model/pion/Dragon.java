@@ -48,8 +48,12 @@ public class Dragon extends Pion{
 					CasePlateau caseProche = plateau.getTabCasePlateauIndex(x,y);
 					CasePlateau caseDistant = plateau.getTabCasePlateauIndex(xSaut,ySaut);
 					// On essaie de voir si un saut est possible
-					if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null)
-						listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+					if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null){
+						if(caseProche.getPionCase().getJoueur() == this.joueur && caseProche.getPionCase().getPuissance().value <= this.puissance.value)
+							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,null));
+						else if (caseProche.getPionCase().getPuissance().value <= this.puissance.value)
+							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+					}
 				}
 				catch (HorsPlateauException | CaseBloqueException | DeplacementException e) {
 					System.out.println(e);

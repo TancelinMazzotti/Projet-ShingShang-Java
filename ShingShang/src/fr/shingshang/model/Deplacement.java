@@ -13,8 +13,7 @@ public class Deplacement {
 	private boolean estUnSaut;
 	private CasePlateau casePionEliminer;
 	
-	public Deplacement(CasePlateau depart,CasePlateau destination,
-			boolean estUnSaut,CasePlateau casePionEliminer) throws DeplacementException{
+	public Deplacement(CasePlateau depart,CasePlateau destination, boolean estUnSaut,CasePlateau casePionEliminer) throws DeplacementException{
 		if(depart == null && destination == null)
 			throw new DeplacementException("La case de depart et de destiantion est inconnue");
 		else if(depart == null)
@@ -54,6 +53,15 @@ public class Deplacement {
 		this.destination.setPionCase(this.pion);
 		this.pion.setCasePlateau(this.destination);
 		this.depart.setPionCase(null);
+	}
+
+	public void supprimerPion(){
+		if(casePionEliminer != null){
+			Pion pionEliminer = this.casePionEliminer.getPionCase();
+			Joueur joueurPion = pionEliminer.getJoueur();
+			joueurPion.getListPion().remove(pionEliminer);
+			this.casePionEliminer.setPionCase(null);
+		}
 	}
 	
 	public CasePlateau getDepart() {

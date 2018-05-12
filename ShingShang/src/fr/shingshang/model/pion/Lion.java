@@ -53,8 +53,12 @@ public class Lion extends Pion {
 					try{
 						CasePlateau caseDistant = plateau.getTabCasePlateauIndex(xSaut,ySaut);
 						// On essaie de voir si un saut est possible
-						if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
-							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+						if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail()){
+							if(caseProche.getPionCase().getJoueur() == this.joueur && caseProche.getPionCase().getPuissance().value <= this.puissance.value)
+								listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,null));
+							else if(caseProche.getPionCase().getPuissance().value <= this.puissance.value)
+								listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,true,caseProche));
+						}
 						}
 					catch (HorsPlateauException | CaseBloqueException | DeplacementException e2) {
 						System.out.println(e2);
