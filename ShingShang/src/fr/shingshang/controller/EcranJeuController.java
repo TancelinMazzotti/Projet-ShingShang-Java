@@ -121,8 +121,6 @@ public class EcranJeuController {
 
 	private void cliquerSurCase(ImageView imageView){
 		int coordonneImage[];
-
-		Shadow shadow = new Shadow(0.0, Color.ORANGE);
 		int x, y;
 		try {
 			coordonneImage = getCoordImageToken(imageView);
@@ -130,40 +128,13 @@ public class EcranJeuController {
 			y = coordonneImage[1];
 			Pion pionClique = shingShang.getPionJoueurActuel(x, y);
 
-			if(pionClique != null){
-				this.pionSelectionner = pionClique;
-				listDeplacement = pionSelectionner.listDeplacementPossible(shingShang.getPlateau());
-				resetEffect();
-				for(int i = 0; i < listDeplacement.size(); i++)
-				{
-					Deplacement deplacement = listDeplacement.get(i);
-					int xDestination = deplacement.getDestination().getX();
-					int yDestination = deplacement.getDestination().getY();
-					this.imagesCasePlateau[xDestination][yDestination].getParent().setEffect(shadow);
-				}
-			}
-
-			else if(this.pionSelectionner != null){
-				Deplacement deplacement = Deplacement.rechercheDestinantionListDeplacement(this.listDeplacement, x, y);
-				deplacement.deplacerPion();
-				if(deplacement.isEstUnSaut())
-				{
-					deplacement.supprimerPion();
-				}
-
-				this.pionSelectionner = null;
-				resetEffect();
-				actualiserAffichage();
-				if(shingShang.testVictoireJoueurActuel()){
-					plateauGraphique.setDisable(true);
-					terminerButton.setDisable(true);
-					titreLabel.setText("Victoire");
-				}
-			}
-
+			if(pionClique != null)
+				cliquePion(pionClique);
+			
+			else if(this.pionSelectionner != null)
+				cliqueDeplacement( x, y);
+			
 		} catch (HorsPlateauException e) {
-			System.out.println(e.getMessage());
-		} catch (DeplacementException e) {
 			System.out.println(e.getMessage());
 		} catch (CaseBloqueException e) {
 			System.out.println(e.getMessage());
@@ -188,7 +159,51 @@ public class EcranJeuController {
 	private void sortirDeCase(ImageView imageView){
 		imageView.setEffect(null);
 	}
+	
+	private void cliquePion(Pion pionClique){
+		Shadow shadow = new Shadow(0.0, Color.ORANGE);
+
+		if(pionClique != null){
+			this.pionSelectionner = pionClique;
+			listDeplacement = pionSelectionner.listDeplacementPossible(shingShang.getPlateau());
+			resetEffect();
+			for(int i = 0; i < listDeplacement.size(); i++)
+			{
+				Deplacement deplacement = listDeplacement.get(i);
+				int xDestination = deplacement.getDestination().getX();
+				int yDestination = deplacement.getDestination().getY();
+				this.imagesCasePlateau[xDestination][yDestination].getParent().setEffect(shadow);
+			}
+		}
+	}
+	private void cliqueDeplacement(int x, int y){
+		Deplacement deplacement;
+		try {
+			deplacement = Deplacement.rechercheDestinantionListDeplacement(this.listDeplacement, x, y);
+			deplacement.deplacerPion();
+			if(deplacement.isEstUnSaut())
+			{
+				deplacement.supprimerPion();
+			}
+			else
+				plateauGraphique.setDisable(true);
+
+			this.pionSelectionner = null;
+			resetEffect();
+			actualiserAffichage();
+			if(shingShang.testVictoireJoueurActuel()){
+				plateauGraphique.setDisable(true);
+				terminerButton.setDisable(true);
+				titreLabel.setText("Victoire");
+			}
+		} catch (DeplacementException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
 	public void cliqueTerminerButton(){
+		plateauGraphique.setDisable(false);
 		this.pionSelectionner =null;
 		resetEffect();
 		actualiserAffichage();
