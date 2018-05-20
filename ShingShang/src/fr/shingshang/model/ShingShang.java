@@ -31,6 +31,15 @@ public class ShingShang implements Serializable{
 		
 	}
 	
+	/**
+	 * Création d'une nouvelle partie de Shing - Shang
+	 * @param nomJ1
+	 *	Nom du joueur 1
+	 * @param nomJ2
+	 * 	Nom du joueur 2
+	 * @throws IOException
+	 * @throws ValeurAttributException
+	 */
 	public void nouvellePartie(String nomJ1, String nomJ2) throws IOException, ValeurAttributException {
 		this.plateau = new Plateau();
 		
@@ -43,17 +52,42 @@ public class ShingShang implements Serializable{
 		this.plateau.ajouterPion(this.joueur2.getListPion());
 		this.joueurActuel = this.joueur1;
 	}
+	/**
+	 * Sauvegarde la partie courante
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void sauvegarderPartie() throws FileNotFoundException, IOException {
 		GestionSauvegarde.sauvegarder(this.cheminSauvegarde, this);
 	}
-	
+	/**
+	 * Sauvegarde la partie courante
+	 * @param pathFile
+	 * 	Chemin de la sauvegarde
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void sauvegarderPartie(String pathFile) throws FileNotFoundException, IOException {
 		GestionSauvegarde.sauvegarder(pathFile, this);
-	}	
+	}
+	/**
+	 * Charge la partie choisie
+	 * @param pathFile
+	 * 	Chemin de la sauvegarde
+	 * @return
+	 * 	Renvoie une partie de Shing - Sahnag chargé
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static ShingShang chargerPartie(String pathFile) throws ClassNotFoundException, FileNotFoundException, IOException {
 		return GestionSauvegarde.charger(pathFile);
 	}
-
+	/**
+	 * Génération des pions sur le plateau pour une nouvelle partie
+	 * @param joueur
+	 * @throws IOException
+	 */
 	private void generationPion(Joueur joueur) throws IOException
 	{
 		File fichierCharger = new File("res/defaut-placement.pattern");
@@ -120,11 +154,20 @@ public class ShingShang implements Serializable{
 		if(this.joueurActuel == this.joueur1) return this.joueur2;
 		else return this.joueur1;
 	}
+	/**
+	 * Met le joueur suivant dans joueur actuel
+	 * @return
+	 * 	Renvoie le nouveau joueur actuel
+	 */
 	public Joueur changerJoueur(){
 		this.joueurActuel = this.getJoueurSuivant();
 		return this.joueurActuel;
 	}
-	
+	/**
+	 * Test si le joueur actuel à remporté la partie
+	 * @return
+	 *  true si il a gagné sinon false
+	 */
 	public boolean testVictoireJoueurActuel(){
 		boolean victoire = false;
 		boolean dragonTrouve = false;

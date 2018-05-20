@@ -17,6 +17,13 @@ public abstract class Pion implements Serializable{
 	protected String nom;
 	protected String codeNom;
 	
+	/**
+	 * Création d'un pion sur une case du plateau
+	 * @param casePlateau
+	 * 	Indique la case où sera placer le pion
+	 * @param joueur
+	 * 	Indique le Joueur à qui il appartient
+	 */
 	public Pion(CasePlateau casePlateau, Joueur joueur) {
 		this.casePlateau = casePlateau;
 		this.joueur = joueur;
@@ -25,6 +32,12 @@ public abstract class Pion implements Serializable{
 		this.codeNom = "A";
 	}
 	
+	/**
+	 * Renvoie la liste des déplacements que le pion peut effectuer
+	 * @param plateau
+	 * @return
+	 * Renvoie une liste de déplacement possible
+	 */
 	abstract public List<Deplacement> listDeplacementPossible(Plateau plateau);
 	
 	public String toString() {

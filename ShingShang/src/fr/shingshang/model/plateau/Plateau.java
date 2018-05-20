@@ -53,12 +53,23 @@ public class Plateau implements Serializable {
 		this.setPortail2J2(this.tabCasePlateau[5][Plateau.TAILLE_PLATEAU-2]);
 	}
 	
+	/**
+	 * Test si les coordonnées sont sur le plateau
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static boolean estSurPlateau(int x, int y){
 		if(y >= 0 && y < Plateau.TAILLE_PLATEAU
 				&& x >= 0 && x < Plateau.TAILLE_PLATEAU)
 			return true;
 		else return false;
 	}
+	/**
+	 * Ajoute une liste de pion sur le plateau en fonction de leur coordonnées
+	 * @param listPion
+	 * 	Liste de pion avec des coordonnées différentes
+	 */
 	public void ajouterPion(List<Pion> listPion) {
 		for(int i = 0; i < listPion.size(); i++)
 		{

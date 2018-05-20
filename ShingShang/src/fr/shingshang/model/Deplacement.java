@@ -13,6 +13,19 @@ public class Deplacement {
 	private boolean estUnSaut;
 	private CasePlateau casePionEliminer;
 	
+	/**
+	 * Création d'un déplacement
+	 * @param depart
+	 * 	Case du pion qui va se déplacer
+	 * @param destination
+	 * 	Case où le pion va arriver
+	 * @param estUnSaut
+	 * 	true si c'est un saut et false si c'est un déplacement normal
+	 * @param casePionEliminer
+	 * 	Case du pion à éliminer si c'est un saut
+	 * @throws DeplacementException
+	 * 	Aucun paramètre doit être null
+	 */
 	public Deplacement(CasePlateau depart,CasePlateau destination, boolean estUnSaut,CasePlateau casePionEliminer) throws DeplacementException{
 		if(depart == null && destination == null)
 			throw new DeplacementException("La case de depart et de destiantion est inconnue");
@@ -28,6 +41,19 @@ public class Deplacement {
 		this.casePionEliminer = casePionEliminer;
 	}
 	
+	/**
+	 * Recherche un deplacemnt ayant comme destination la case [x;y]
+	 * @param listDeplacement
+	 * 	Une liste de déplacement
+	 * @param x
+	 * 	Abscisse destination
+	 * @param y
+	 * 	Ordonnée destination
+	 * @return
+	 * 	Renvoie le premier déplacement respectant les critères dans la liste
+	 * @throws DeplacementException
+	 * 	Lève une exception si on ne trouve pas de déplacement
+	 */
 	public static Deplacement rechercheDestinantionListDeplacement(List<Deplacement> listDeplacement, int x, int y) throws DeplacementException{
 		Deplacement deplacement = null;
 		for(int i = 0; i < listDeplacement.size(); i++)
@@ -39,6 +65,12 @@ public class Deplacement {
 		
 		return deplacement;
 	}
+	
+	/**
+	 * Déplace le pion dans la case de départ dans la case de destination
+	 * @throws DeplacementException
+	 * 	Déplacement impossible
+	 */
 	public void deplacerPion() throws DeplacementException{
 		if(depart == null && destination == null)
 			throw new DeplacementException("La case de depart et de destiantion est inconnue");
@@ -55,6 +87,9 @@ public class Deplacement {
 		this.depart.setPionCase(null);
 	}
 
+	/**
+	 * Supprime le pion à élimniner sur le plateau et dans la liste de pion du joueur
+	 */
 	public void supprimerPion(){
 		if(casePionEliminer != null){
 			Pion pionEliminer = this.casePionEliminer.getPionCase();

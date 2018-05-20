@@ -12,7 +12,15 @@ public class Joueur implements Serializable{
 	private int numero;
 	private String nom;
 	private List<Pion> listPion;
-	
+	/**
+	 * Création d'un joueur
+	 * @param numero
+	 * 	Numéro du joueur
+	 * @param nom
+	 *	Nom du joueur
+	 * @throws ValeurAttributException
+	 * 	Numero entre 1 et 2
+	 */
 	public Joueur(int numero, String nom) throws ValeurAttributException {
 		if(numero < 1 || numero > 2)
 			throw new ValeurAttributException();
@@ -52,6 +60,11 @@ public class Joueur implements Serializable{
 	public void setListPion(List<Pion> listPion) {
 		this.listPion = listPion;
 	}
+	/**
+	 * Ajoute un pion à la liste des pions du joueur
+	 * @param pion
+	 * 	Pion ajouté à la liste
+	 */
 	public void ajouterPion(Pion pion) {
 		this.listPion.add(pion);
 	}

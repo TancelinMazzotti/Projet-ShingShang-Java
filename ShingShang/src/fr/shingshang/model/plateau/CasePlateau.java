@@ -14,6 +14,15 @@ public class CasePlateau implements Serializable{
 	private Pion pionCase;
 	private TypeCasePlateau type;
 	
+	/**
+	 * Création d'une case de plateau avec des coordonnées
+	 * @param x
+	 * 	Coordonnée en abscisse
+	 * @param y
+	 * 	Coordonnée en ordonnée
+	 * @throws HorsPlateauException
+	 * 	La case doit être à l'intérieur du plateau
+	 */
 	public CasePlateau(int x, int y) throws HorsPlateauException {
 		if(!Plateau.estSurPlateau(x, y))
 			throw new HorsPlateauException(x,y);
@@ -24,6 +33,11 @@ public class CasePlateau implements Serializable{
 		this.type = TypeCasePlateau.NORMAL;
 	}
 	
+	/**
+	 * Test si la case est un portail
+	 * @return
+	 * 	Renvoie true si c'est un portail
+	 */
 	public boolean estUnPortail(){
 		if (this.type == TypeCasePlateau.PORTAIL_J1 || this.type == TypeCasePlateau.PORTAIL_J2)
 			return true;
