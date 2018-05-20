@@ -127,6 +127,7 @@ public class ShingShang implements Serializable{
 	
 	public boolean testVictoireJoueurActuel(){
 		boolean victoire = false;
+		boolean dragonTrouve = false;
 
 		if (joueurActuel.getNumero() == 2)
 		{
@@ -138,6 +139,13 @@ public class ShingShang implements Serializable{
 				if(plateau.getPortail2J1().getPionCase().getJoueur() == joueur2 && plateau.getPortail2J1().getPionCase().getPuissance() == PuissancePion.DRAGON)
 					victoire = true;
 			}
+			
+			for(int i = 0 ; i < joueur1.getListPion().size(); i++)
+			{
+				if (joueur1.getListPion().get(i).getPuissance() == PuissancePion.DRAGON)
+					dragonTrouve =  true;
+			}
+			if (!dragonTrouve) victoire = true;
 		}
 		else if (joueurActuel.getNumero() == 1)
 		{
@@ -150,6 +158,12 @@ public class ShingShang implements Serializable{
 				if(plateau.getPortail2J2().getPionCase().getJoueur() == joueur1 && plateau.getPortail2J2().getPionCase().getPuissance() == PuissancePion.DRAGON)
 					victoire = true;
 			}
+			for(int i = 0 ; i < joueur2.getListPion().size(); i++)
+			{
+				if (joueur2.getListPion().get(i).getPuissance() == PuissancePion.DRAGON)
+					dragonTrouve =  true;
+			}
+			if (!dragonTrouve) victoire = true;
 		}
 		return victoire;
 	}

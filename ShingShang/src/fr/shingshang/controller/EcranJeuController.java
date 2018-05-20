@@ -2,6 +2,7 @@ package fr.shingshang.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.shingshang.MainApp;
@@ -44,6 +45,8 @@ public class EcranJeuController {
 
 	private ImageView imagesCasePlateau[][];
 	private Pion pionSelectionner;
+
+	List<ImageView> pionVerouiller;
 	List<Deplacement> listDeplacement;
 	private ShingShang shingShang;
 
@@ -60,6 +63,7 @@ public class EcranJeuController {
 
 	public EcranJeuController(){
 		this.imagesCasePlateau = new ImageView[Plateau.TAILLE_PLATEAU][Plateau.TAILLE_PLATEAU];
+		pionVerouiller = new ArrayList<ImageView>();
 		this.pionSelectionner = null;
 	}
 
@@ -204,7 +208,8 @@ public class EcranJeuController {
 	
 	public void cliqueTerminerButton(){
 		plateauGraphique.setDisable(false);
-		this.pionSelectionner =null;
+		pionVerouiller = new ArrayList<ImageView>();
+		this.pionSelectionner = null;
 		resetEffect();
 		actualiserAffichage();
 		shingShang.changerJoueur();

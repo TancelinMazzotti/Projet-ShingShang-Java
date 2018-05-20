@@ -19,7 +19,7 @@
             </Label>
          </top>
          <bottom>
-            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Dévelloppé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
+            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développé par MAZZOTTI Tancelin - 2018" textFill="RED" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">

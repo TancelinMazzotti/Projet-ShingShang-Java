@@ -24,7 +24,7 @@
             <Label fx:id="titreLabel" styleClass="labelTitre" stylesheets="@css/theme.css" text="Shing - Shang" BorderPane.alignment="CENTER" />
          </top>
          <bottom>
-            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développée par MAZZOTTI Tancein - 2018" BorderPane.alignment="CENTER" />
+            <Label styleClass="labelCopyright" stylesheets="@css/theme.css" text="Développé par MAZZOTTI Tancelin - 2018" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
             <GridPane fx:id="plateauGraphique" alignment="CENTER" stylesheets="@css/theme.css" BorderPane.alignment="CENTER">

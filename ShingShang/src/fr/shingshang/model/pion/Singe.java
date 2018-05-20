@@ -55,6 +55,7 @@ public class Singe extends Pion{
 						// On essaie de voir si un deplacement double est possible
 						if(caseProche.getPionCase() == null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail())
 							listDeplacement.add(new Deplacement(this.casePlateau,caseDistant,false,null));
+						
 						// On essaie de voir si un saut est possible
 						else if(caseProche.getPionCase() != null && caseDistant.getPionCase() == null && !caseDistant.estUnPortail()){
 							if(caseProche.getPionCase().getJoueur() == this.joueur && caseProche.getPionCase().getPuissance().value <= this.puissance.value )
